@@ -1,3 +1,66 @@
+:root {
+  --background-color: #f2f4f7;
+  --light-background-color: #fcfcfd;
+  --accent-color: #1d2939;
+  --font-color: #98a2b3;
+  --font-accent-color: #667085;
+}
+
 body {
   margin: 0;
+  font-family: "Karla", sans-serif;
+  background-color: var(--background-color);
+}
+
+.navigation__collection {
+  width: 240px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 24px 24px 0 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.03em;
+  color: var(--font-accent-color);
+}
+
+.navigation__collection_element {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  padding: 12px 6px;
+}
+
+.navigation__collection_element:hover,
+.navigation__collection_element:focus {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+  border-radius: 8px;
+}
+
+.navigation__collection_element-1st {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navigation__collection_element-img {
+  width: 24px;
+  padding: 4px;
+}
+
+.navigation__collection_element_name {
+  margin: 0;
+}
+
+.navigation__collection_element_number {
+  background-color: var(--background-color);
+  padding: 2.5px 6px;
+  color: var(--accent-color);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.0075em;
 }

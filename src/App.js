@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Navigation from "./components/Navigation";
 
 const App = () => {
-  return <div>Hello world!</div>;
+  return (
+    <>
+      <Navigation />
+    </>
+  );
 };
 
 export default App;
