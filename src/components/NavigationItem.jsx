@@ -1,5 +1,7 @@
 import React from "react";
 
+// import { ReactComponent as Icon } from "./tasks_icon_grey.svg";
+
 const NavigationItem = ({ path, name, number }) => {
   return (
     <div className="navigation__collection_element">

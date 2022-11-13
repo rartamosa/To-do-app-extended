@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-tag-input-component": "^2.0.2",
     "uniqid": "^5.4.0"
   },
   "browserslist": {
