@@ -3,11 +3,11 @@ import React from "react";
 import NavigationItem from "./NavigationItem";
 import navigationElements from "../utils/navigationElements";
 
-const Navigation = ({ tasksTotal }) => {
+const Navigation = ({ tasksTotal, onMobileMenuOpen }) => {
   return (
     <nav
       className="navigation__collection"
-      // style={{ left: isMobileMenuOpen ? "0" : "-75%" }}
+      style={{ left: onMobileMenuOpen ? "0" : "-75%" }}
     >
       {navigationElements.map((element) => {
         return (

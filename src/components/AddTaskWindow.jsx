@@ -6,24 +6,33 @@ import uniqid from "uniqid";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
-  const [selected, setSelected] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [link, setLink] = useState("");
+  const [tags, setTags] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
+  const [assignee, setAssignee] = useState("");
+  const [comments, setComments] = useState([]);
 
   const addNewTask = (event) => {
     event.preventDefault();
     const newTask = {
       id: uniqid(),
-      title: "Test",
-      description: "test test test",
-      link: "http://test.com",
-      tags: ["tag1", "tag2", "tag3"],
-      dueDate: new Date(),
-      assignee: "Marta",
+      title,
+      description,
+      link,
+      tags,
+      dueDate: startDate,
+      assignee,
       column: "todo",
-      comments: ["test comment"],
+      comments,
     };
     onFormSubmit(newTask);
     onModalClose();
+  };
+
+  const addNewComment = (newComment) => {
+    setComments([...comments, newComment]);
   };
 
   return (
@@ -33,6 +42,8 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
           <div className="add-window__container-controls">
             <h4 className="add-window__container-controls_titles">Title</h4>
             <input
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
               className="add-window__container_input"
               type="text"
               placeholder="Type title"
@@ -41,19 +52,23 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
               Description
             </h4>
             <input
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
               className="add-window__container_input"
               type="text"
               placeholder="Type description"
             />
             <h4 className="add-window__container-controls_titles">Link</h4>
             <input
+              value={link}
+              onChange={(event) => setLink(event.target.value)}
               className="add-window__container_input"
               type="text"
               placeholder="Type link"
             />
             <h4 className="add-window__container-controls_titles">Tags</h4>
             <div>
-              <TagsInput value={selected} onChange={setSelected} name="Tags" />
+              <TagsInput value={tags} onChange={setTags} name="Tags" />
             </div>
             <div className="add-window__container-controls_selection">
               <div className="add-window__container-controls_selection-element">
@@ -63,8 +78,9 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                 <div>
                   <DatePicker
                     selected={startDate}
-                    onChange={(date: Date) => setStartDate(date)}
+                    onChange={(date) => setStartDate(date)}
                     className="add-window__container-controls_selection-select"
+                    dateFormat={"dd/MM/yyyy"}
                   />
                 </div>
               </div>
@@ -73,10 +89,15 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                   Assigned to
                 </h4>
                 <select
+                  value={assignee}
+                  onChange={(event) => setAssignee(event.target.value)}
                   className="add-window__container-controls_selection-select"
                   name="person"
                   id="person"
                 >
+                  <option value="" disabled selected hidden>
+                    Choose
+                  </option>
                   <option value="Marianna">Marianna</option>
                   <option value="Marta">Marta</option>
                   <option value="Maks">Maks</option>
@@ -100,16 +121,24 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
             </div>
             <h4 className="add-window__container-controls_titles">Comments</h4>
             <input
+              value={comments}
+              onChange={(event) => addNewComment(event.target.value)}
               className="add-window__container_input"
               type="text"
               placeholder="Add comment..."
             />
           </div>
-          <div>
-            <button onClick={onModalClose} type="button">
+          <div className="add-window__container_buttons">
+            <button
+              onClick={onModalClose}
+              type="button"
+              className="add-window__container_button"
+            >
               Cancel
             </button>
-            <button type="submit">Save</button>
+            <button type="submit" className="add-window__container_button">
+              Save
+            </button>
           </div>
         </form>
       </div>

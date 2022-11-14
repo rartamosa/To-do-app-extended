@@ -18,6 +18,8 @@ body {
   font-family: "Karla", sans-serif;
   background-color: var(--background-color);
   position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .navigation__collection {
@@ -84,6 +86,10 @@ body {
   letter-spacing: -0.0075em;
 }
 
+.hidden {
+  display: none;
+}
+
 .to-do {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -92,6 +98,10 @@ body {
   padding: 80px 84px;
   position: relative;
   box-sizing: border-box;
+}
+
+.todo__column {
+  overflow-y: scroll;
 }
 
 .todo__column_task {
@@ -230,6 +240,8 @@ body {
   background-color: var(--light-background-color);
   width: 742px;
   padding: 70px 70px 20px 70px;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .add-window__container-controls_titles {
@@ -244,10 +256,11 @@ body {
   border: none;
   width: 100%;
   margin-bottom: 10px;
+  background-color: var(--light-background-color);
 }
 
 .add-window__container_input:last-of-type {
-  margin-bottom: 0;
+  margin-bottom: 163px;
 }
 
 .add-window__container_input:first-of-type {
@@ -261,5 +274,86 @@ body {
   margin: 5px 0 10px 0;
 }
 
+.react-datepicker__day--selected {
+  background-color: var(--accent-color);
+}
+
+.add-window__container-controls_selection {
+  display: flex;
+  gap: 20px;
+}
+
+.add-window__container-controls_selection-select {
+  font-family: "Karla";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: var(--font-color);
+  border: 1px solid var(--font-color);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  width: 140px;
+}
+
+.add-window__container_button {
+  padding: 8px;
+  border: 1px solid var(--font-color);
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: "Karla";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.02em;
+}
+
+.add-window__container_buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.add-window__container_button:last-of-type {
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 8px 16px;
+}
+
 @media all and (max-width: 1439px) {
+  .main__mobile-menu-button {
+    display: inline;
+    border: none;
+    background-image: url(../public/assets/mobile_menu.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 25px;
+    width: 40px;
+    position: absolute;
+    top: 20px;
+    right: 9px;
+    background-color: transparent;
+  }
+
+  .add-window__container {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    overflow: hidden;
+    padding: 30px 30px 0 30px;
+  }
+
+  .add-window__container-controls_selection {
+    flex-wrap: wrap;
+  }
+
+  .add-window__container_input:last-of-type {
+    margin: 0;
+  }
 }

@@ -23,7 +23,9 @@ const SingleTask = ({
           </span>
         </div>
       </div>
-      <p className="todo__column_task-description">{description}</p>
+      <p className="todo__column_task-description">
+        {description.substring(0, 102) + "..."}
+      </p>
       <div className="todo__column_task-link">
         <img
           src="../assets/link_icon.png"

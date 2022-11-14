@@ -7,6 +7,7 @@ import AddTaskWindow from "./components/AddTaskWindow";
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toDoList, setToDoList] = useState([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -16,15 +17,29 @@ const App = () => {
     setIsModalOpen(false);
   };
 
+  const handleMobileMenuOpen = () => {
+    setIsMobileMenuOpen(true);
+  };
+
+  const handleMobileMenuClose = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   const handleFormSubmit = (newToDoTask) => {
     setToDoList([...toDoList, newToDoTask]);
-    console.log("test", toDoList);
   };
 
   return (
     <>
-      <Navigation tasksTotal={toDoList.length} />
-      <Main onModalOpen={handleModalOpen} toDoList={toDoList} />
+      <Navigation
+        tasksTotal={toDoList.length}
+        onMobileMenuOpen={handleMobileMenuOpen}
+      />
+      <Main
+        onModalOpen={handleModalOpen}
+        toDoList={toDoList}
+        onMobileMenuOpen={handleMobileMenuOpen}
+      />
       {isModalOpen && (
         <AddTaskWindow
           onFormSubmit={handleFormSubmit}
