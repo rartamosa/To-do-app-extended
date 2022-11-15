@@ -18,8 +18,6 @@ body {
   font-family: "Karla", sans-serif;
   background-color: var(--background-color);
   position: relative;
-  overflow-x: scroll;
-  overflow-y: hidden;
 }
 
 .navigation__collection {
@@ -92,16 +90,18 @@ body {
 
 .to-do {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 320px);
   column-gap: 36px;
   width: calc(100% - 240px);
   padding: 80px 84px;
   position: relative;
   box-sizing: border-box;
+  height: 100vh;
+  overflow-x: auto;
 }
 
 .todo__column {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .todo__column_task {
@@ -207,8 +207,8 @@ body {
   background-position: center;
   background-size: 30px;
   position: absolute;
-  right: -29px;
-  bottom: -29px;
+  right: 56px;
+  bottom: 56px;
   padding: 12px;
   border: none;
   background-color: var(--accent-color);
@@ -324,7 +324,7 @@ body {
   padding: 8px 16px;
 }
 
-@media all and (max-width: 1439px) {
+@media all and (max-width: 767px) {
   .main__mobile-menu-button {
     display: inline;
     border: none;
@@ -333,10 +333,31 @@ body {
     background-size: contain;
     height: 25px;
     width: 40px;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 9px;
     background-color: transparent;
+  }
+
+  .navigation__collection {
+    position: absolute;
+    width: 75%;
+    box-sizing: border-box;
+    z-index: 1;
+    transition: left 0.3s ease;
+  }
+
+  .main_add-button {
+    right: 25px;
+    bottom: 25px;
+    position: fixed;
+  }
+
+  .to-do {
+    width: 100%;
+    height: 100vh;
+    padding: 80px 10px;
+    column-gap: 10px;
   }
 
   .add-window__container {
@@ -347,6 +368,7 @@ body {
     position: fixed;
     overflow: hidden;
     padding: 30px 30px 0 30px;
+    width: 100%;
   }
 
   .add-window__container-controls_selection {

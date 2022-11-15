@@ -13,6 +13,7 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [assignee, setAssignee] = useState("");
   const [comments, setComments] = useState([]);
+  const [singleComment, setSingleComment] = useState("");
 
   const addNewTask = (event) => {
     event.preventDefault();
@@ -31,8 +32,12 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
     onModalClose();
   };
 
-  const addNewComment = (newComment) => {
-    setComments([...comments, newComment]);
+  const addNewComment = (event) => {
+    if (event.key === "Enter") {
+      setComments([...comments, singleComment]);
+      event.preventDefault();
+      setSingleComment("");
+    }
   };
 
   return (
@@ -95,7 +100,7 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                   name="person"
                   id="person"
                 >
-                  <option value="" disabled selected hidden>
+                  <option value="" disabled hidden>
                     Choose
                   </option>
                   <option value="Marianna">Marianna</option>
@@ -121,8 +126,9 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
             </div>
             <h4 className="add-window__container-controls_titles">Comments</h4>
             <input
-              value={comments}
-              onChange={(event) => addNewComment(event.target.value)}
+              value={singleComment}
+              onChange={(event) => setSingleComment(event.target.value)}
+              onKeyPress={addNewComment}
               className="add-window__container_input"
               type="text"
               placeholder="Add comment..."

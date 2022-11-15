@@ -17,13 +17,17 @@ const App = () => {
     setIsModalOpen(false);
   };
 
-  const handleMobileMenuOpen = () => {
-    setIsMobileMenuOpen(true);
+  // const handleMobileMenuOpen = () => {
+  //   setIsMobileMenuOpen(true);
+  // };
+
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleMobileMenuClose = () => {
-    setIsMobileMenuOpen(false);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setIsMobileMenuOpen(false);
+  // };
 
   const handleFormSubmit = (newToDoTask) => {
     setToDoList([...toDoList, newToDoTask]);
@@ -33,12 +37,12 @@ const App = () => {
     <>
       <Navigation
         tasksTotal={toDoList.length}
-        onMobileMenuOpen={handleMobileMenuOpen}
+        isMobileMenuOpen={isMobileMenuOpen}
       />
       <Main
         onModalOpen={handleModalOpen}
         toDoList={toDoList}
-        onMobileMenuOpen={handleMobileMenuOpen}
+        onMobileMenuToggle={handleMobileMenuToggle}
       />
       {isModalOpen && (
         <AddTaskWindow
