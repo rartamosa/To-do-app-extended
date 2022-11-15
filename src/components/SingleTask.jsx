@@ -24,9 +24,7 @@ const SingleTask = ({
           </span>
         </div>
       </div>
-      <p className="todo__column_task-description">
-        {description.substring(0, 102) + "..."}
-      </p>
+      <p className="todo__column_task-description">{description}</p>
       <div className="todo__column_task-link">
         <img
           src="../assets/link_icon.png"
@@ -34,12 +32,11 @@ const SingleTask = ({
           alt="link"
           className="todo__column_task-link-img"
         />
-        <span>{link.substring(0, 13) + "..."}</span>
-        {/* {link.length < 14 ? (
+        {link.length < 14 ? (
           <span>{link}</span>
         ) : (
           <span>{link.substring(0, 13) + "..."}</span>
-        )} */}
+        )}
       </div>
       <ul className="todo__column_task-tags">
         {tags.map((tag) => (

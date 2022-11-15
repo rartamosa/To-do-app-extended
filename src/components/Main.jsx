@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 import ToDoColumn from "./ToDoColumn";
 
-const Main = ({ onModalOpen, toDoList, onMobileMenuToggle }) => {
+const Main = ({ onModalOpen, toDoList, onMobileMenuOpen }) => {
   const [task, setTask] = useState([]);
 
   return (
     <main className="to-do">
       <button
-        onClick={onMobileMenuToggle}
+        onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
       <ToDoColumn columnName="TO DO" toDoList={toDoList} />

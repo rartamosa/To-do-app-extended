@@ -40,6 +40,17 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
     }
   };
 
+  const CustomInput = ({ value, onClick, onChange }) => (
+    <input
+      className="add-window__container-controls_selection-select"
+      value={value}
+      onClick={onClick}
+      onChange={onChange}
+      readOnly={true}
+      onFocus={(event) => event.target.blur()}
+    />
+  );
+
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
@@ -84,8 +95,8 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                   <DatePicker
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
-                    className="add-window__container-controls_selection-select"
                     dateFormat={"dd/MM/yyyy"}
+                    customInput={<CustomInput />}
                   />
                 </div>
               </div>

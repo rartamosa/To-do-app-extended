@@ -11,6 +11,12 @@
 
 #root {
   display: flex;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  overflow-y: hidden;
 }
 
 body {
@@ -18,6 +24,8 @@ body {
   font-family: "Karla", sans-serif;
   background-color: var(--background-color);
   position: relative;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .navigation__collection {
@@ -53,20 +61,57 @@ body {
   color: #fff;
 }
 
-.navigation__collection_element:hover .navigation__collection_element-img {
-  fill: var(--accent-color);
-}
-
 .navigation__collection_element-1st {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.navigation__collection_element-img {
+.navigation__collection_element-tasks-icon,
+.navigation__collection_element-users-icon,
+.navigation__collection_element-columns-icon,
+.navigation__collection_element-tags-icon {
   width: 24px;
+  height: 24px;
   padding: 3px;
+  background-size: contain;
+  background-repeat: no-repeat;
   box-sizing: border-box;
+}
+.navigation__collection_element-tasks-icon {
+  background-image: url(../public/assets/tasks_icon_grey.svg);
+}
+
+.navigation__collection_element:hover
+  .navigation__collection_element-tasks-icon {
+  background-image: url(../public/assets/tasks_icon_blue.svg);
+}
+
+.navigation__collection_element-users-icon {
+  background-image: url(../public/assets/users_icon_grey.svg);
+}
+
+.navigation__collection_element:hover
+  .navigation__collection_element-users-icon {
+  background-image: url(../public/assets/users_icon_blue.svg);
+}
+
+.navigation__collection_element-columns-icon {
+  background-image: url(../public/assets/columns_icon_grey.svg);
+}
+
+.navigation__collection_element:hover
+  .navigation__collection_element-columns-icon {
+  background-image: url(../public/assets/columns_icon_blue.svg);
+}
+
+.navigation__collection_element-tags-icon {
+  background-image: url(../public/assets/tags_icon_grey.svg);
+}
+
+.navigation__collection_element:hover
+  .navigation__collection_element-tags-icon {
+  background-image: url(../public/assets/tags_icon_blue.svg);
 }
 
 .navigation__collection_element_name {
@@ -96,7 +141,7 @@ body {
   padding: 80px 84px;
   position: relative;
   box-sizing: border-box;
-  height: 100vh;
+  height: 100%;
   overflow-x: auto;
 }
 
@@ -127,6 +172,9 @@ body {
   font-size: 15px;
   letter-spacing: -0.0075em;
   margin: 0 0 32px 0;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
 }
 
 .todo__column_task-name {
@@ -137,9 +185,15 @@ body {
   margin: 0 0 6px 0;
 }
 
+.todo__column_task-date-person_dot {
+  position: absolute;
+  left: 62px;
+  bottom: 3px;
+}
+
 .todo__column_task-date-person {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   position: relative;
   font-weight: 700;
   font-size: 14px;
@@ -153,6 +207,10 @@ body {
 
 .todo__column_task-description {
   margin: 16px 0;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .todo__column_task-link {
@@ -184,11 +242,6 @@ body {
   color: var(--tags-dark-color);
 }
 
-.todo__column_task-tags_dev {
-  background-color: var(--tags-green-hover-color);
-  color: var(--tags-green-text-color);
-}
-
 .todo__column_task-comments-section_img {
   width: 18px;
   padding: 4px 3px;
@@ -206,9 +259,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 30px;
-  position: absolute;
-  right: 56px;
-  bottom: 56px;
+  position: fixed;
+  right: 58px;
+  bottom: 10px;
   padding: 12px;
   border: none;
   background-color: var(--accent-color);
@@ -242,6 +295,7 @@ body {
   padding: 70px 70px 20px 70px;
   position: relative;
   box-sizing: border-box;
+  height: 584px;
 }
 
 .add-window__container-controls_titles {
@@ -281,6 +335,10 @@ body {
   background-color: var(--accent-color);
 }
 
+.react-datepicker__day.react-datepicker__day--015.react-datepicker__day--keyboard-selected {
+  background-color: var(--accent-color);
+}
+
 .add-window__container-controls_selection {
   display: flex;
   gap: 20px;
@@ -312,7 +370,7 @@ body {
 
 .add-window__container-controls_comments-section {
   overflow-y: auto;
-  max-height: 150px;
+  max-height: 88px;
 }
 
 .add-window__container-controls-comment,
@@ -386,6 +444,48 @@ add-window__container_input-comment {
     box-sizing: border-box;
     z-index: 1;
     transition: left 0.3s ease;
+    z-index: 2;
+  }
+
+  @keyframes mobile_navigation_open {
+    from {
+      background-color: transparent;
+    }
+    to {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @keyframes mobile_navigation_close {
+    from {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+    to {
+      background-color: transparent;
+    }
+  }
+
+  @keyframes mobile_navigation_fade {
+    from {
+      left: 0;
+    }
+    to {
+      left: -100%;
+    }
+  }
+
+  .navigation__overlay {
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+    animation: mobile_navigation_open 0.3s;
+  }
+
+  .navigation__overlay_closed {
+    animation: mobile_navigation_close 0.3s 0.3s, mobile_navigation_fade 0.3s;
   }
 
   .add-window__container-controls_titles {
@@ -395,15 +495,13 @@ add-window__container_input-comment {
   .main_add-button {
     right: 25px;
     bottom: 25px;
-    position: fixed;
   }
 
   .to-do {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 80px 10px 100px 10px;
     column-gap: 10px;
-    overflow-y: hidden;
   }
 
   .add-window__container {
@@ -415,6 +513,7 @@ add-window__container_input-comment {
     overflow: hidden;
     padding: 30px 30px 0 30px;
     width: 100%;
+    height: 100%;
   }
 
   .add-window__container_input:first-of-type {
