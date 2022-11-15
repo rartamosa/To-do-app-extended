@@ -3,7 +3,6 @@ import React from "react";
 import SingleTask from "./SingleTask";
 
 const ToDoColumn = ({ columnName, toDoList }) => {
-  console.log(toDoList);
   return (
     <div className="todo__column">
       <h3 className="todo__column-name">{columnName}</h3>

@@ -250,6 +250,7 @@ body {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .add-window__container_input {
@@ -257,10 +258,11 @@ body {
   width: 100%;
   margin-bottom: 10px;
   background-color: var(--light-background-color);
-}
-
-.add-window__container_input:last-of-type {
-  margin-bottom: 163px;
+  font-family: "Karla";
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
 }
 
 .add-window__container_input:first-of-type {
@@ -270,8 +272,9 @@ body {
 }
 
 .rti--container {
-  width: 50%;
+  width: 300px;
   margin: 5px 0 10px 0;
+  box-sizing: border-box;
 }
 
 .react-datepicker__day--selected {
@@ -295,6 +298,44 @@ body {
   border-radius: 8px;
   padding: 8px;
   width: 140px;
+  margin: 5px 0 10px 0;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("../public/assets/select_arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+
+.add-window__container-controls_selection-select-disabled {
+  background-color: #c9d2e1;
+}
+
+.add-window__container-controls_comments-section {
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+.add-window__container-controls-comment,
+add-window__container_input-comment {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  color: var(--font-color);
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.add-window__container-controls_comments-section-list {
+  padding-left: 13px;
+}
+
+.add-window__container_input-comment {
+  border: none;
+  width: 100%;
+  background-color: var(--light-background-color);
+  font-family: "Karla";
+  margin-bottom: 200px;
 }
 
 .add-window__container_button {
@@ -347,6 +388,10 @@ body {
     transition: left 0.3s ease;
   }
 
+  .add-window__container-controls_titles {
+    margin: 0 0 5px 0;
+  }
+
   .main_add-button {
     right: 25px;
     bottom: 25px;
@@ -356,8 +401,9 @@ body {
   .to-do {
     width: 100%;
     height: 100vh;
-    padding: 80px 10px;
+    padding: 80px 10px 100px 10px;
     column-gap: 10px;
+    overflow-y: hidden;
   }
 
   .add-window__container {
@@ -371,11 +417,17 @@ body {
     width: 100%;
   }
 
-  .add-window__container-controls_selection {
-    flex-wrap: wrap;
+  .add-window__container_input:first-of-type {
+    font-size: 34px;
   }
 
-  .add-window__container_input:last-of-type {
-    margin: 0;
+  .add-window__container_input {
+    font-size: 18px;
+  }
+
+  .add-window__container-controls_selection {
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 10px;
   }
 }

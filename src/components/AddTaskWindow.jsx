@@ -113,7 +113,7 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                   Column
                 </h4>
                 <select
-                  className="add-window__container-controls_selection-select"
+                  className="add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
                   name="column"
                   id="column"
                   disabled
@@ -124,15 +124,34 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                 </select>
               </div>
             </div>
-            <h4 className="add-window__container-controls_titles">Comments</h4>
-            <input
-              value={singleComment}
-              onChange={(event) => setSingleComment(event.target.value)}
-              onKeyPress={addNewComment}
-              className="add-window__container_input"
-              type="text"
-              placeholder="Add comment..."
-            />
+            <div>
+              <h4 className="add-window__container-controls_titles">
+                Comments
+              </h4>
+              <div className="add-window__container-controls_comments-section">
+                <ul className="add-window__container-controls_comments-section-list">
+                  {comments.map((newComment) => {
+                    return (
+                      <li
+                        key={uniqid()}
+                        className="add-window__container-controls-comment"
+                      >
+                        {newComment}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+
+              <input
+                value={singleComment}
+                onChange={(event) => setSingleComment(event.target.value)}
+                onKeyPress={addNewComment}
+                className="add-window__container_input-comment"
+                type="text"
+                placeholder="Add comment..."
+              />
+            </div>
           </div>
           <div className="add-window__container_buttons">
             <button

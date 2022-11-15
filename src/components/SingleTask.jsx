@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { format } from "date-fns";
 
 const SingleTask = ({
   title,
@@ -14,7 +15,7 @@ const SingleTask = ({
     <div className="todo__column_task">
       <h2 className="todo__column_task-name">{title}</h2>
       <div className="todo__column_task-date-person">
-        <div>{dueDate.toDateString()}</div>
+        <div>{format(dueDate, "do MMM")}</div>
         <div className="todo__column_task-date-person_dot">.</div>
         <div>
           Assigned to
@@ -33,7 +34,12 @@ const SingleTask = ({
           alt="link"
           className="todo__column_task-link-img"
         />
-        <span>{link}</span>
+        <span>{link.substring(0, 13) + "..."}</span>
+        {/* {link.length < 14 ? (
+          <span>{link}</span>
+        ) : (
+          <span>{link.substring(0, 13) + "..."}</span>
+        )} */}
       </div>
       <ul className="todo__column_task-tags">
         {tags.map((tag) => (
