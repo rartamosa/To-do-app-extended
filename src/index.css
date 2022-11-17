@@ -447,24 +447,6 @@ add-window__container_input-comment {
     z-index: 2;
   }
 
-  @keyframes mobile_navigation_open {
-    from {
-      left: -100%;
-    }
-    to {
-      left: 0;
-    }
-  }
-
-  /* @keyframes mobile_navigation_close {
-    from {
-      background-color: rgba(0, 0, 0, 0.35);
-    }
-    to {
-      background-color: transparent;
-    }
-  } */
-
   @keyframes mobile_navigation_fade {
     from {
       left: 0;
@@ -481,13 +463,12 @@ add-window__container_input-comment {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.35);
     z-index: 1;
-    animation: mobile_navigation_open 0.3s;
     transition: background-color 0.3s ease;
   }
 
   .navigation__overlay_closed {
     background-color: rgba(0, 0, 0, 0);
-    animation: mobile_navigation_fade 0.3s 0.3s;
+    animation: mobile_navigation_fade 0.3s 0.3s forwards;
     transition: background-color 0.3s ease;
   }
 
