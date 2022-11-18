@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import uniqid from "uniqid";
 
 import Navigation from "./components/Navigation";
 import Main from "./components/Main";
@@ -22,23 +23,25 @@ const App = () => {
   // };
 
   const handleNewTaskAdd = (
-    event,
+    id,
     title,
     description,
     link,
     tags,
     dueDate,
     assignee,
+    column,
     comments
   ) => {
-    event.preventDefault();
     const newTask = {
+      id,
       title,
       description,
       link,
       tags,
       dueDate,
       assignee,
+      column,
       comments,
     };
     setToDoList([...toDoList, newTask]);
@@ -51,7 +54,7 @@ const App = () => {
   };
 
   const handleTaskEdit = (
-    event,
+    id,
     title,
     description,
     link,
@@ -61,8 +64,8 @@ const App = () => {
     column,
     comments
   ) => {
-    event.preventDefault();
     const editedTask = {
+      id,
       title,
       description,
       link,

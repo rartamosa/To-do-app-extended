@@ -12,7 +12,7 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
   );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
-  const [startDate, setStartDate] = useState(
+  const [dueDate, setDueDate] = useState(
     mode === "add" ? new Date() : taskToEdit.dueDate
   );
   const [assignee, setAssignee] = useState(
@@ -22,10 +22,15 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     mode === "add" ? [] : taskToEdit.comments
   );
   const [singleComment, setSingleComment] = useState("");
+  const [column, setColumn] = useState(
+    mode === "add" ? "TO DO" : taskToEdit.column
+  );
 
   const onFormSubmit = (event) => {
+    event.preventDefault();
+    const id = mode === "add" ? uniqid() : taskToEdit.id;
     handleFormSubmit(
-      event,
+      id,
       title,
       description,
       link,
@@ -35,6 +40,7 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
       column,
       comments
     );
+    onModalClose();
   };
 
   // const addNewTask = (event) => {
@@ -90,7 +96,7 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     }
   };
 
-  const CustomInput = ({ value, onClick, onChange }) => (
+  const CustomInput = React.forwardRef(({ value, onClick, onChange }, ref) => (
     <input
       className="add-window__container-controls_selection-select"
       value={value}
@@ -98,8 +104,9 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
       onChange={onChange}
       readOnly={true}
       onFocus={(event) => event.target.blur()}
+      ref={ref}
     />
-  );
+  ));
 
   return (
     <div className="add-window__overlay">
@@ -143,8 +150,8 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                 </h4>
                 <div>
                   <DatePicker
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    selected={dueDate}
+                    onChange={(date) => setDueDate(date)}
                     dateFormat={"dd/MM/yyyy"}
                     customInput={<CustomInput />}
                   />
@@ -174,6 +181,8 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                   Column
                 </h4>
                 <select
+                  value={column}
+                  onChange={(event) => setColumn(event.target.value)}
                   className="add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
                   name="column"
                   id="column"
