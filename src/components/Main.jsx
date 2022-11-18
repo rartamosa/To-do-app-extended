@@ -2,19 +2,34 @@ import React, { useState } from "react";
 
 import ToDoColumn from "./ToDoColumn";
 
-const Main = ({ onModalOpen, toDoList, onMobileMenuOpen }) => {
-  const [task, setTask] = useState([]);
-
+const Main = ({
+  onAddFormOpen,
+  toDoList,
+  onMobileMenuOpen,
+  onEditFormOpen,
+}) => {
   return (
     <main className="to-do">
       <button
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
-      <ToDoColumn columnName="TO DO" toDoList={toDoList} />
-      <ToDoColumn columnName="IN PROGRESS" toDoList={toDoList} />
-      <ToDoColumn columnName="DONE" toDoList={toDoList} />
-      <button className="main_add-button" onClick={onModalOpen}></button>
+      <ToDoColumn
+        columnName="TO DO"
+        toDoList={toDoList.filter((task) => task.column === "TO DO")}
+        onEditFormOpen={onEditFormOpen}
+      />
+      <ToDoColumn
+        columnName="IN PROGRESS"
+        toDoList={toDoList.filter((task) => task.column === "IN PROGRESS")}
+        onEditFormOpen={onEditFormOpen}
+      />
+      <ToDoColumn
+        columnName="DONE"
+        toDoList={toDoList.filter((task) => task.column === "DONE")}
+        onEditFormOpen={onEditFormOpen}
+      />
+      <button className="main_add-button" onClick={onAddFormOpen}></button>
     </main>
   );
 };

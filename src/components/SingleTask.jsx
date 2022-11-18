@@ -1,30 +1,21 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 
-const SingleTask = ({
-  title,
-  description,
-  link,
-  tags,
-  dueDate,
-  assignee,
-  column,
-  comments,
-}) => {
+const SingleTask = ({ task, onEditFormOpen }) => {
   return (
-    <div className="todo__column_task">
-      <h2 className="todo__column_task-name">{title}</h2>
+    <div className="todo__column_task" onClick={() => onEditFormOpen(task)}>
+      <h2 className="todo__column_task-name">{task.title}</h2>
       <div className="todo__column_task-date-person">
-        <div>{format(dueDate, "do MMM")}</div>
+        <div>{format(task.dueDate, "do MMM")}</div>
         <div className="todo__column_task-date-person_dot">.</div>
         <div>
           Assigned to
           <span className="todo__column_task-date-person_person">
-            {assignee}
+            {task.assignee}
           </span>
         </div>
       </div>
-      <p className="todo__column_task-description">{description}</p>
+      <p className="todo__column_task-description">{task.description}</p>
       <div className="todo__column_task-link">
         <img
           src="../assets/link_icon.png"
@@ -32,14 +23,14 @@ const SingleTask = ({
           alt="link"
           className="todo__column_task-link-img"
         />
-        {link.length < 14 ? (
-          <span>{link}</span>
+        {task.link.length < 14 ? (
+          <span>{task.link}</span>
         ) : (
-          <span>{link.substring(0, 13) + "..."}</span>
+          <span>{task.link.substring(0, 13) + "..."}</span>
         )}
       </div>
       <ul className="todo__column_task-tags">
-        {tags.map((tag) => (
+        {task.tags.map((tag) => (
           <li key={tag} className="todo__column_task-tags_design">
             {tag}
           </li>
@@ -52,7 +43,7 @@ const SingleTask = ({
           alt="comment"
           className="todo__column_task-comments-section_img"
         />
-        <span>{comments.length}</span>
+        <span>{task.comments.length}</span>
       </div>
     </div>
   );

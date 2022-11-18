@@ -5,32 +5,82 @@ import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [link, setLink] = useState("");
-  const [tags, setTags] = useState([]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [assignee, setAssignee] = useState("");
-  const [comments, setComments] = useState([]);
+const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
+  const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
+  const [description, setDescription] = useState(
+    mode === "add" ? "" : taskToEdit.description
+  );
+  const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
+  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
+  const [startDate, setStartDate] = useState(
+    mode === "add" ? new Date() : taskToEdit.dueDate
+  );
+  const [assignee, setAssignee] = useState(
+    mode === "add" ? "" : taskToEdit.assignee
+  );
+  const [comments, setComments] = useState(
+    mode === "add" ? [] : taskToEdit.comments
+  );
   const [singleComment, setSingleComment] = useState("");
 
-  const addNewTask = (event) => {
-    event.preventDefault();
-    const newTask = {
-      id: uniqid(),
+  const onFormSubmit = (event) => {
+    handleFormSubmit(
+      event,
       title,
       description,
       link,
       tags,
-      dueDate: startDate,
+      dueDate,
       assignee,
-      column: "todo",
-      comments,
-    };
-    onFormSubmit(newTask);
-    onModalClose();
+      column,
+      comments
+    );
   };
+
+  // const addNewTask = (event) => {
+  //   event.preventDefault();
+  //   const newTask = {
+  //     id: uniqid(),
+  //     title,
+  //     description,
+  //     link,
+  //     tags,
+  //     dueDate: startDate,
+  //     assignee,
+  //     column: "todo",
+  //     comments,
+  //   };
+  //   handleFormSubmit(newTask);
+  //   onModalClose();
+  // };
+
+  // const editTask = (
+  //   event,
+  //   id,
+  //   title,
+  //   description,
+  //   link,
+  //   tags,
+  //   dueDate,
+  //   assignee,
+  //   column,
+  //   comments
+  // ) => {
+  //   event.preventDefault();
+  //   const editedTask = {
+  //     id,
+  //     title,
+  //     description,
+  //     link,
+  //     tags,
+  //     dueDate,
+  //     assignee,
+  //     column,
+  //     comments,
+  //   };
+  //   handleFormSubmit(editedTask);
+  //   onModalClose();
+  // };
 
   const addNewComment = (event) => {
     if (event.key === "Enter") {
@@ -54,7 +104,7 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
-        <form onSubmit={addNewTask}>
+        <form onSubmit={onFormSubmit}>
           <div className="add-window__container-controls">
             <h4 className="add-window__container-controls_titles">Title</h4>
             <input
@@ -127,7 +177,7 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
                   className="add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
                   name="column"
                   id="column"
-                  disabled
+                  disabled={mode === "add" ? true : false}
                 >
                   <option value="TO DO">TO DO</option>
                   <option value="IN PROGRESS">IN PROGRESS</option>
@@ -182,4 +232,4 @@ const AddTaskWindow = ({ onFormSubmit, onModalClose }) => {
   );
 };
 
-export default AddTaskWindow;
+export default TaskForm;
