@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import uniqid from "uniqid";
 
 import Navigation from "./components/Navigation";
 import Main from "./components/Main";
@@ -17,10 +16,6 @@ const App = () => {
     setMode("add");
     setSelectedTask(null);
   };
-
-  // const handleNewTaskAdd = (newToDoTask) => {
-  //   setToDoList([...toDoList, newToDoTask]);
-  // };
 
   const handleNewTaskAdd = (
     id,

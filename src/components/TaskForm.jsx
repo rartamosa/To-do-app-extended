@@ -43,51 +43,6 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     onModalClose();
   };
 
-  // const addNewTask = (event) => {
-  //   event.preventDefault();
-  //   const newTask = {
-  //     id: uniqid(),
-  //     title,
-  //     description,
-  //     link,
-  //     tags,
-  //     dueDate: startDate,
-  //     assignee,
-  //     column: "todo",
-  //     comments,
-  //   };
-  //   handleFormSubmit(newTask);
-  //   onModalClose();
-  // };
-
-  // const editTask = (
-  //   event,
-  //   id,
-  //   title,
-  //   description,
-  //   link,
-  //   tags,
-  //   dueDate,
-  //   assignee,
-  //   column,
-  //   comments
-  // ) => {
-  //   event.preventDefault();
-  //   const editedTask = {
-  //     id,
-  //     title,
-  //     description,
-  //     link,
-  //     tags,
-  //     dueDate,
-  //     assignee,
-  //     column,
-  //     comments,
-  //   };
-  //   handleFormSubmit(editedTask);
-  //   onModalClose();
-  // };
-
   const addNewComment = (event) => {
     if (event.key === "Enter") {
       setComments([...comments, singleComment]);
@@ -182,8 +137,12 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                 </h4>
                 <select
                   value={column}
+                  className={
+                    mode === "add"
+                      ? "add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
+                      : "add-window__container-controls_selection-select"
+                  }
                   onChange={(event) => setColumn(event.target.value)}
-                  className="add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
                   name="column"
                   id="column"
                   disabled={mode === "add" ? true : false}

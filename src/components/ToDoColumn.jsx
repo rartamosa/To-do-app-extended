@@ -7,19 +7,7 @@ const ToDoColumn = ({ columnName, toDoList, onEditFormOpen }) => {
     <div className="todo__column">
       <h3 className="todo__column-name">{columnName}</h3>
       {toDoList.map((task) => (
-        <SingleTask
-          key={task.id}
-          task={task}
-          onEditFormOpen={onEditFormOpen}
-          // title={task.title}
-          // description={task.description}
-          // link={task.link}
-          // tags={task.tags}
-          // dueDate={task.dueDate}
-          // assignee={task.assignee}
-          // column={task.column}
-          // comments={task.comments}
-        />
+        <SingleTask key={task.id} task={task} onEditFormOpen={onEditFormOpen} />
       ))}
     </div>
   );
