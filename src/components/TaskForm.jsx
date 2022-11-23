@@ -13,22 +13,22 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
   const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
   const [dueDate, setDueDate] = useState(
-    mode === "add" ? new Date() : taskToEdit.dueDate
+    mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
   const [assignee, setAssignee] = useState(
-    mode === "add" ? "" : taskToEdit.assignee
+    mode === "add" ? "" : taskToEdit.assignee.name
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
   );
   const [singleComment, setSingleComment] = useState("");
   const [column, setColumn] = useState(
-    mode === "add" ? "TO DO" : taskToEdit.column
+    mode === "add" ? "TO DO" : taskToEdit.column.name
   );
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    const id = mode === "add" ? uniqid() : taskToEdit.id;
+    const id = mode === "add" ? uniqid() : taskToEdit._id;
     handleFormSubmit(
       id,
       title,
@@ -63,6 +63,7 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     />
   ));
 
+  console.log(taskToEdit);
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
@@ -96,7 +97,7 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
             />
             <h4 className="add-window__container-controls_titles">Tags</h4>
             <div>
-              <TagsInput value={tags} onChange={setTags} name="Tags" />
+              {/* <TagsInput value={tags} onChange={setTags} name="Tags" /> */}
             </div>
             <div className="add-window__container-controls_selection">
               <div className="add-window__container-controls_selection-element">

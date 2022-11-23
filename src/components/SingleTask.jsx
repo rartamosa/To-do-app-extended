@@ -6,12 +6,12 @@ const SingleTask = ({ task, onEditFormOpen }) => {
     <div className="todo__column_task" onClick={() => onEditFormOpen(task)}>
       <h2 className="todo__column_task-name">{task.title}</h2>
       <div className="todo__column_task-date-person">
-        <div>{format(task.dueDate, "do MMM")}</div>
+        <div>{format(new Date(task.dueDate), "do MMM")}</div>
         <div className="todo__column_task-date-person_dot">.</div>
         <div>
           Assigned to
           <span className="todo__column_task-date-person_person">
-            {task.assignee}
+            {task.assignee.name}
           </span>
         </div>
       </div>
@@ -31,8 +31,8 @@ const SingleTask = ({ task, onEditFormOpen }) => {
       </div>
       <ul className="todo__column_task-tags">
         {task.tags.map((tag) => (
-          <li key={tag} className="todo__column_task-tags_design">
-            {tag}
+          <li key={tag._id} className="todo__column_task-tags_design">
+            {tag.name}
           </li>
         ))}
       </ul>

@@ -14,15 +14,13 @@ const Main = ({
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
+
       <ToDoColumn
-        columnName={toDoList.records.column.name}
-        toDoList={toDoList.filter(
-          (task) => task.column._id === "637ded3cdf920bb738b4cb8f"
-        )}
+        columnName="TEST"
+        toDoList={toDoList.filter((task) => task.column.name === "Test column")}
         onEditFormOpen={onEditFormOpen}
-        key={toDoList._id}
       />
-      <ToDoColumn
+      {/* <ToDoColumn
         columnName="IN PROGRESS"
         toDoList={toDoList.filter((task) => task.column === "IN PROGRESS")}
         onEditFormOpen={onEditFormOpen}
@@ -31,7 +29,7 @@ const Main = ({
         columnName="DONE"
         toDoList={toDoList.filter((task) => task.column === "DONE")}
         onEditFormOpen={onEditFormOpen}
-      />
+      /> */}
       <button className="main_add-button" onClick={onAddFormOpen}></button>
     </main>
   );
