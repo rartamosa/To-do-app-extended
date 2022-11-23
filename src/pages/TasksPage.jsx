@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
@@ -8,6 +8,15 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
   const [toDoList, setToDoList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
+
+  const URL = "https://todo-api-mwy8.onrender.com";
+
+  useEffect(() => {
+    fetch(`${URL}/tasks`)
+      .then((res) => res.json())
+      .then((data) => setToDoList(data));
+  }, []);
+  console.log(toDoList);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);
@@ -44,7 +53,6 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
     setIsModalOpen(true);
     setMode("edit");
     setSelectedTask(singleTask);
-    x;
   };
 
   const handleTaskEdit = (

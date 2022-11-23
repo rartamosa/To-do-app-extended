@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const NavigationItem = () => {
   return (
     <>
-      <NavLink to="/">
+      <NavLink to="/" className="navlink">
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -17,7 +17,7 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">X</span>
         </div>
       </NavLink>
-      <NavLink to="/users">
+      <NavLink to="/users" className="navlink">
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -30,7 +30,7 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">3</span>
         </div>
       </NavLink>
-      <NavLink to="/columns">
+      <NavLink to="/columns" className="navlink">
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -43,7 +43,7 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">3</span>
         </div>
       </NavLink>
-      <NavLink to="/tags">
+      <NavLink to="/tags" className="navlink">
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div

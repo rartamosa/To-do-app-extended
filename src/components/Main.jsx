@@ -15,9 +15,12 @@ const Main = ({
         className="main__mobile-menu-button hidden"
       ></button>
       <ToDoColumn
-        columnName="TO DO"
-        toDoList={toDoList.filter((task) => task.column === "TO DO")}
+        columnName={toDoList.records.column.name}
+        toDoList={toDoList.filter(
+          (task) => task.column._id === "637ded3cdf920bb738b4cb8f"
+        )}
         onEditFormOpen={onEditFormOpen}
+        key={toDoList._id}
       />
       <ToDoColumn
         columnName="IN PROGRESS"

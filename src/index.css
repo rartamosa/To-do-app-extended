@@ -28,6 +28,10 @@ body {
   overflow-y: hidden;
 }
 
+.navlink {
+  text-decoration: none;
+}
+
 .navigation__collection {
   width: 240px;
   height: 100vh;
@@ -49,14 +53,36 @@ body {
   padding: 12px 6px;
 }
 
+.navigation__collection_element_name {
+  margin: 0;
+  color: var(--font-accent-color);
+}
+
+.navigation__collection_element:hover .navigation__collection_element_name,
+.navigation__collection_element:active .navigation__collection_element_name {
+  color: var(--accent-color);
+}
+
+.navigation__collection_element_number {
+  background-color: var(--background-color);
+  padding: 2.5px 6px;
+  color: var(--accent-color);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.0075em;
+}
+
 .navigation__collection_element:hover,
-.navigation__collection_element:focus {
+.navigation__collection_element:active {
   background-color: var(--background-color);
   color: var(--accent-color);
   border-radius: 8px;
 }
 
-.navigation__collection_element:hover .navigation__collection_element_number {
+.navigation__collection_element:hover .navigation__collection_element_number,
+.navigation__collection_element:active .navigation__collection_element_number {
   background-color: var(--accent-color);
   color: #fff;
 }
@@ -83,6 +109,8 @@ body {
 }
 
 .navigation__collection_element:hover
+  .navigation__collection_element-tasks-icon,
+.navigation__collection_element:active
   .navigation__collection_element-tasks-icon {
   background-image: url(../public/assets/tasks_icon_blue.svg);
 }
@@ -92,6 +120,8 @@ body {
 }
 
 .navigation__collection_element:hover
+  .navigation__collection_element-users-icon,
+.navigation__collection_element:active
   .navigation__collection_element-users-icon {
   background-image: url(../public/assets/users_icon_blue.svg);
 }
@@ -101,6 +131,8 @@ body {
 }
 
 .navigation__collection_element:hover
+  .navigation__collection_element-columns-icon,
+.navigation__collection_element:active
   .navigation__collection_element-columns-icon {
   background-image: url(../public/assets/columns_icon_blue.svg);
 }
@@ -109,24 +141,10 @@ body {
   background-image: url(../public/assets/tags_icon_grey.svg);
 }
 
-.navigation__collection_element:hover
+.navigation__collection_element:hover .navigation__collection_element-tags-icon,
+.navigation__collection_element:active
   .navigation__collection_element-tags-icon {
   background-image: url(../public/assets/tags_icon_blue.svg);
-}
-
-.navigation__collection_element_name {
-  margin: 0;
-}
-
-.navigation__collection_element_number {
-  background-color: var(--background-color);
-  padding: 2.5px 6px;
-  color: var(--accent-color);
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: -0.0075em;
 }
 
 .hidden {
@@ -160,6 +178,7 @@ body {
   box-shadow: 0px 0.5px 2px rgb(16 24 40 / 30%);
   padding: 20px;
   margin-bottom: 24px;
+  cursor: pointer;
 }
 
 .todo__column_task:last-of-type {
@@ -269,6 +288,7 @@ body {
   height: 56px;
   border-radius: 50%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .add-window__container {
@@ -362,6 +382,7 @@ body {
   background-image: url("../public/assets/select_arrow.svg");
   background-repeat: no-repeat;
   background-position: right 8px center;
+  cursor: pointer;
 }
 
 .add-window__container-controls_selection-select-disabled {
@@ -406,6 +427,7 @@ add-window__container_input-comment {
   font-size: 20px;
   line-height: 23px;
   letter-spacing: -0.02em;
+  cursor: pointer;
 }
 
 .add-window__container_buttons {
