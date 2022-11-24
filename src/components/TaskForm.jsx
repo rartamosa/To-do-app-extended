@@ -24,14 +24,16 @@ const TaskForm = ({
     mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
   const [assignee, setAssignee] = useState(
-    mode === "add" ? {} : taskToEdit.assignee
+    mode === "add" ? "" : taskToEdit.assignee._id
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
   );
   const [singleComment, setSingleComment] = useState("");
   const [column, setColumn] = useState(
-    mode === "add" ? {} : taskToEdit.column.name
+    mode === "add"
+      ? columnsList.find((column) => column.name === "to do")._id
+      : taskToEdit.column._id
   );
 
   const onFormSubmit = (event) => {
@@ -83,8 +85,6 @@ const TaskForm = ({
       ref={ref}
     />
   ));
-
-  console.log(assignee);
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
@@ -145,11 +145,11 @@ const TaskForm = ({
                   name="person"
                   id="person"
                 >
-                  <option value={{}} disabled hidden>
+                  <option value={""} disabled hidden>
                     Choose
                   </option>
                   {usersList.map((user) => (
-                    <option key={user._id} value={user}>
+                    <option key={user._id} value={user._id}>
                       {user.name}
                     </option>
                   ))}
@@ -167,12 +167,12 @@ const TaskForm = ({
                       : "add-window__container-controls_selection-select"
                   }
                   onChange={(event) => setColumn(event.target.value)}
-                  name="column"
-                  id="column"
+                  name={column.name}
+                  id={column._id}
                   disabled={mode === "add" ? true : false}
                 >
                   {columnsList.map((column) => (
-                    <option key={column._id} value={column.name}>
+                    <option key={column._id} value={column._id}>
                       {column.name}
                     </option>
                   ))}

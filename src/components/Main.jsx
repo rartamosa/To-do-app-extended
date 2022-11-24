@@ -23,24 +23,6 @@ const Main = ({
           onEditFormOpen={onEditFormOpen}
         />
       ))}
-
-      {/* <ToDoColumn
-        columnName="TEST"
-        toDoList={toDoList.filter(
-          (column) => column.column.name === "Test column"
-        )}
-        onEditFormOpen={onEditFormOpen}
-      />
-      <ToDoColumn
-        columnName="IN PROGRESS"
-        toDoList={toDoList.filter((task) => task.column === "IN PROGRESS")}
-        onEditFormOpen={onEditFormOpen}
-      />
-      <ToDoColumn
-        columnName="DONE"
-        toDoList={toDoList.filter((task) => task.column === "DONE")}
-        onEditFormOpen={onEditFormOpen}
-      /> */}
       <button className="main_add-button" onClick={onAddFormOpen}></button>
     </main>
   );

@@ -19,25 +19,24 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
       .then((res) => res.json())
       .then((data) => setToDoList(data.records));
   }, []);
-  //   console.log(toDoList);
 
   useEffect(() => {
     fetch(`${URL}/tags`)
       .then((res) => res.json())
       .then((data) => setTagsList(data.records));
-  }, [isModalOpen]);
+  }, []);
 
   useEffect(() => {
     fetch(`${URL}/users`)
       .then((res) => res.json())
       .then((data) => setUsersList(data.records));
-  }, [isModalOpen]);
+  }, []);
 
   useEffect(() => {
     fetch(`${URL}/columns`)
       .then((res) => res.json())
       .then((data) => setColumnsList(data.records));
-  }, [isModalOpen]);
+  }, []);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);
@@ -72,28 +71,8 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
     fetch(`${URL}/tasks`, options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        // setToDoList([...toDoList, data.records]);
+        setToDoList([...toDoList, data.records]);
       });
-    // useState(() => {
-    //   fetch(`${URL}/tasks`, options)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       setToDoList([...toDoList, data.records]);
-    //     }, handleNewTaskAdd);
-    // }
-
-    // const newTask = {
-    //   title,
-    //   description,
-    //   link,
-    //   tags,
-    //   dueDate,
-    //   assignee,
-    //   column,
-    //   comments,
-    // };
-    // setToDoList([...toDoList, newTask]);
   };
 
   const handleEditFormOpen = (singleTask) => {

@@ -161,6 +161,8 @@ body {
   box-sizing: border-box;
   height: 100%;
   overflow-x: auto;
+  grid-auto-flow: column;
+  grid-auto-columns: 320px;
 }
 
 .todo__column {
