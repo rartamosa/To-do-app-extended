@@ -194,6 +194,7 @@ body {
   position: sticky;
   top: 0;
   background-color: var(--background-color);
+  text-transform: uppercase;
 }
 
 .todo__column_task-name {
@@ -414,7 +415,6 @@ add-window__container_input-comment {
   width: 100%;
   background-color: var(--light-background-color);
   font-family: "Karla";
-  margin-bottom: 200px;
 }
 
 .add-window__container_button {

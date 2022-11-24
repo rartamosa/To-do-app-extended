@@ -5,7 +5,15 @@ import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
+const TaskForm = ({
+  onModalClose,
+  mode,
+  taskToEdit,
+  handleFormSubmit,
+  tagsList,
+  usersList,
+  columnsList,
+}) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
   const [description, setDescription] = useState(
     mode === "add" ? "" : taskToEdit.description
@@ -16,21 +24,20 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
   const [assignee, setAssignee] = useState(
-    mode === "add" ? "" : taskToEdit.assignee.name
+    mode === "add" ? {} : taskToEdit.assignee.name
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
   );
   const [singleComment, setSingleComment] = useState("");
   const [column, setColumn] = useState(
-    mode === "add" ? "TO DO" : taskToEdit.column.name
+    mode === "add" ? {} : taskToEdit.column.name
   );
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     const id = mode === "add" ? uniqid() : taskToEdit._id;
     handleFormSubmit(
-      id,
       title,
       description,
       link,
@@ -41,6 +48,16 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
       comments
     );
     onModalClose();
+    console.log(
+      title,
+      description,
+      link,
+      tags,
+      dueDate,
+      assignee,
+      column,
+      comments
+    );
   };
 
   const addNewComment = (event) => {
@@ -48,6 +65,20 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
       setComments([...comments, singleComment]);
       event.preventDefault();
       setSingleComment("");
+    }
+  };
+
+  const onExistingCommentEdit = (event, index) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const editedComments = comments.map((item, itemIndex) => {
+        if (index === itemIndex) {
+          return event.target.value;
+        } else {
+          return item;
+        }
+      });
+      setComments(editedComments);
     }
   };
 
@@ -63,7 +94,6 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
     />
   ));
 
-  console.log(taskToEdit);
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
@@ -127,9 +157,11 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                   <option value="" disabled hidden>
                     Choose
                   </option>
-                  <option value="Marianna">Marianna</option>
-                  <option value="Marta">Marta</option>
-                  <option value="Maks">Maks</option>
+                  {usersList.map((user) => (
+                    <option key={user._id} value={user.name}>
+                      {user.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="add-window__container-controls_selection-element">
@@ -148,9 +180,11 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                   id="column"
                   disabled={mode === "add" ? true : false}
                 >
-                  <option value="TO DO">TO DO</option>
-                  <option value="IN PROGRESS">IN PROGRESS</option>
-                  <option value="DONE">DONE</option>
+                  {columnsList.map((column) => (
+                    <option key={column._id} value={column.name}>
+                      {column.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -159,18 +193,19 @@ const TaskForm = ({ onModalClose, mode, taskToEdit, handleFormSubmit }) => {
                 Comments
               </h4>
               <div className="add-window__container-controls_comments-section">
-                <ul className="add-window__container-controls_comments-section-list">
-                  {comments.map((newComment) => {
-                    return (
-                      <li
-                        key={uniqid()}
-                        className="add-window__container-controls-comment"
-                      >
-                        {newComment}
-                      </li>
-                    );
-                  })}
-                </ul>
+                <div className="add-window__container-controls_comment-section">
+                  {comments.map((comment, index) => (
+                    <input
+                      defaultValue={comment}
+                      className="add-window__container_input-comment add-window__container-controls-comment"
+                      type="text"
+                      key={uniqid()}
+                      onKeyPress={(event) =>
+                        onExistingCommentEdit(event, index)
+                      }
+                    />
+                  ))}
+                </div>
               </div>
 
               <input

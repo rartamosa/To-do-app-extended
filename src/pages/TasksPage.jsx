@@ -6,6 +6,9 @@ import TaskForm from "../components/TaskForm";
 const TasksPage = ({ handleMobileMenuOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toDoList, setToDoList] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
+  const [columnsList, setColumnsList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
 
@@ -16,7 +19,25 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
       .then((res) => res.json())
       .then((data) => setToDoList(data.records));
   }, []);
-  console.log(toDoList);
+  //   console.log(toDoList);
+
+  useEffect(() => {
+    fetch(`${URL}/tags`)
+      .then((res) => res.json())
+      .then((data) => setTagsList(data.records));
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    fetch(`${URL}/users`)
+      .then((res) => res.json())
+      .then((data) => setUsersList(data.records));
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    fetch(`${URL}/columns`)
+      .then((res) => res.json())
+      .then((data) => setColumnsList(data.records));
+  }, [isModalOpen]);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);
@@ -31,7 +52,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
     tags,
     dueDate,
     assignee,
-    // column,
+    column,
     comments
   ) => {
     const options = {
@@ -41,17 +62,18 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         title,
         description,
         link,
-        tags: [],
+        tags,
         dueDate,
         assignee,
-        // column,
+        column,
         comments,
       }),
     };
     fetch(`${URL}/tasks`, options)
       .then((res) => res.json())
       .then((data) => {
-        setToDoList([...toDoList, data.records]);
+        console.log(data);
+        // setToDoList([...toDoList, data.records]);
       });
     // useState(() => {
     //   fetch(`${URL}/tasks`, options)
@@ -90,20 +112,33 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
     column,
     comments
   ) => {
-    // tu bedzie fetch put zamiast editedTask
-    // .then(data => tu mam juz dostep do zedytowanego taska, czyli data.records; tu zrobie const edutedToDoList i w if zrobie task._id === task.records._id)
-    // fetch(`${URL}/tasks dodac body`)
-    // .then(json)
-    // .then(data => {
-    //     const editedToDoList = toDoList.map((task) => {
-    //         if (task._id === data.records._id) {
-    //           return data.records;
-    //         } else {
-    //           return task;
-    //         }
-    //       });
-    //       setToDoList(editedToDoList);
-    // })
+    const options = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title,
+        description,
+        link,
+        tags,
+        dueDate,
+        assignee,
+        column,
+        comments,
+      }),
+    };
+    fetch(`${URL}/put/${selectedTask}`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        const editedToDoList = toDoList.map((task) => {
+          if (task._id === data.records._id) {
+            return data.records;
+          } else {
+            return task;
+          }
+        });
+        setToDoList(editedToDoList);
+      });
+
     const editedTask = {
       title,
       description,
@@ -136,6 +171,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         toDoList={toDoList}
         onMobileMenuOpen={handleMobileMenuOpen}
         onEditFormOpen={handleEditFormOpen}
+        columnsList={columnsList}
       />
       {isModalOpen && (
         <TaskForm
@@ -143,6 +179,9 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
           onModalClose={handleModalClose}
           handleFormSubmit={mode === "add" ? handleNewTaskAdd : handleTaskEdit}
           taskToEdit={selectedTask}
+          tagsList={tagsList}
+          usersList={usersList}
+          columnsList={columnsList}
         />
       )}
     </>

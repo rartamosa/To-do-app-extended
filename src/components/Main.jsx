@@ -7,6 +7,7 @@ const Main = ({
   toDoList,
   onMobileMenuOpen,
   onEditFormOpen,
+  columnsList,
 }) => {
   return (
     <main className="to-do">
@@ -14,13 +15,23 @@ const Main = ({
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
+      {columnsList.map((column) => (
+        <ToDoColumn
+          key={column._id}
+          columnName={column.name}
+          toDoList={toDoList.filter((task) => task.column.name === column.name)}
+          onEditFormOpen={onEditFormOpen}
+        />
+      ))}
 
-      <ToDoColumn
+      {/* <ToDoColumn
         columnName="TEST"
-        toDoList={toDoList.filter((task) => task.column.name === "Test column")}
+        toDoList={toDoList.filter(
+          (column) => column.column.name === "Test column"
+        )}
         onEditFormOpen={onEditFormOpen}
       />
-      {/* <ToDoColumn
+      <ToDoColumn
         columnName="IN PROGRESS"
         toDoList={toDoList.filter((task) => task.column === "IN PROGRESS")}
         onEditFormOpen={onEditFormOpen}
