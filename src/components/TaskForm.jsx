@@ -163,8 +163,8 @@ const TaskForm = ({
                   value={column}
                   className={
                     mode === "add"
-                      ? "add-window__container-controls_selection-select add-window__container-controls_selection-select-disabled"
-                      : "add-window__container-controls_selection-select"
+                      ? "add-window__container-controls_selection-select add-window__container-controls_selection-select-column add-window__container-controls_selection-select-disabled"
+                      : "add-window__container-controls_selection-select add-window__container-controls_selection-select-column"
                   }
                   onChange={(event) => setColumn(event.target.value)}
                   name={column.name}
