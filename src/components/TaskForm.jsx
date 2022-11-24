@@ -24,7 +24,7 @@ const TaskForm = ({
     mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
   const [assignee, setAssignee] = useState(
-    mode === "add" ? {} : taskToEdit.assignee.name
+    mode === "add" ? {} : taskToEdit.assignee
   );
   const [comments, setComments] = useState(
     mode === "add" ? [] : taskToEdit.comments
@@ -48,16 +48,6 @@ const TaskForm = ({
       comments
     );
     onModalClose();
-    console.log(
-      title,
-      description,
-      link,
-      tags,
-      dueDate,
-      assignee,
-      column,
-      comments
-    );
   };
 
   const addNewComment = (event) => {
@@ -94,6 +84,7 @@ const TaskForm = ({
     />
   ));
 
+  console.log(assignee);
   return (
     <div className="add-window__overlay">
       <div className="add-window__container">
@@ -154,11 +145,11 @@ const TaskForm = ({
                   name="person"
                   id="person"
                 >
-                  <option value="" disabled hidden>
+                  <option value={{}} disabled hidden>
                     Choose
                   </option>
                   {usersList.map((user) => (
-                    <option key={user._id} value={user.name}>
+                    <option key={user._id} value={user}>
                       {user.name}
                     </option>
                   ))}

@@ -126,7 +126,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         comments,
       }),
     };
-    fetch(`${URL}/put/${selectedTask}`, options)
+    fetch(`${URL}/tasks/${selectedTask._id}`, options)
       .then((res) => res.json())
       .then((data) => {
         const editedToDoList = toDoList.map((task) => {
