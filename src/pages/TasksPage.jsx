@@ -11,7 +11,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   const URL = "https://todo-api-mwy8.onrender.com";
-  const [toDoListData, toDoListError, toDoListLoading, refetch] = useFetch(
+  const [toDoListData, toDoListError, toDoListLoading] = useFetch(
     `${URL}/tasks`
   );
   const [tagsList] = useFetch(`${URL}/tags`);
@@ -54,13 +54,11 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         comments,
       }),
     };
-    refetch(`${URL}/tasks`, options);
-
-    // fetch(`${URL}/tasks`, options)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setToDoList([...toDoList, data.records]);
-    //   });
+    fetch(`${URL}/tasks`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        setToDoList([...toDoList, data.records]);
+      });
   };
 
   const handleEditFormOpen = (singleTask) => {
@@ -93,20 +91,18 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         comments,
       }),
     };
-    refetch(`${URL}/tasks/${selectedTask._id}`, options);
-
-    // fetch(`${URL}/tasks/${selectedTask._id}`, options)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     const editedToDoList = toDoList.map((task) => {
-    //       if (task._id === data.records._id) {
-    //         return data.records;
-    //       } else {
-    //         return task;
-    //       }
-    //     });
-    //     setToDoList(editedToDoList);
-    //   });
+    fetch(`${URL}/tasks/${selectedTask._id}`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        const editedToDoList = toDoList.map((task) => {
+          if (task._id === data.records._id) {
+            return data.records;
+          } else {
+            return task;
+          }
+        });
+        setToDoList(editedToDoList);
+      });
 
     const editedTask = {
       title,

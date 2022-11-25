@@ -9,7 +9,6 @@ const Main = ({
   onEditFormOpen,
   columnsList,
 }) => {
-  console.log(toDoList, columnsList);
   return (
     <main className="to-do">
       <button

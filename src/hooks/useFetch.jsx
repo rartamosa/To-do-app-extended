@@ -18,19 +18,7 @@ const useFetch = (url, options = { method: "GET" }) => {
       .finally(() => setLoading(false));
   }, []);
 
-  const refetch = (url, options) => {
-    setLoading(true);
-    fetch(url, options)
-      .then((res) => res.json())
-      .then((payload) => {
-        console.log(payload);
-        setData(payload);
-      })
-      .catch((err) => setError(err))
-      .finally(() => setLoading(false));
-  };
-
-  return [data, error, loading, refetch];
+  return [data, error, loading];
 };
 
 export default useFetch;
