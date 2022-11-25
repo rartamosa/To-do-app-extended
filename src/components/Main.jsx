@@ -9,17 +9,20 @@ const Main = ({
   onEditFormOpen,
   columnsList,
 }) => {
+  console.log(toDoList, columnsList);
   return (
     <main className="to-do">
       <button
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
-      {columnsList.map((column) => (
+      {columnsList?.map((column) => (
         <ToDoColumn
           key={column._id}
           columnName={column.name}
-          toDoList={toDoList.filter((task) => task.column.name === column.name)}
+          toDoList={toDoList?.filter(
+            (task) => task.column.name === column.name
+          )}
           onEditFormOpen={onEditFormOpen}
         />
       ))}

@@ -1,42 +1,28 @@
 import React, { useState, useEffect } from "react";
 
+import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
 
 const TasksPage = ({ handleMobileMenuOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toDoList, setToDoList] = useState([]);
-  const [tagsList, setTagsList] = useState([]);
-  const [usersList, setUsersList] = useState([]);
-  const [columnsList, setColumnsList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
 
   const URL = "https://todo-api-mwy8.onrender.com";
+  const [toDoListData, toDoListError, toDoListLoading, refetch] = useFetch(
+    `${URL}/tasks`
+  );
+  const [tagsList] = useFetch(`${URL}/tags`);
+  const [usersList] = useFetch(`${URL}/users`);
+  const [columnsList] = useFetch(`${URL}/columns`);
 
   useEffect(() => {
-    fetch(`${URL}/tasks`)
-      .then((res) => res.json())
-      .then((data) => setToDoList(data.records));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${URL}/tags`)
-      .then((res) => res.json())
-      .then((data) => setTagsList(data.records));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${URL}/users`)
-      .then((res) => res.json())
-      .then((data) => setUsersList(data.records));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${URL}/columns`)
-      .then((res) => res.json())
-      .then((data) => setColumnsList(data.records));
-  }, []);
+    if (toDoListData.records) {
+      setToDoList(toDoListData.records);
+    }
+  }, [toDoListData]);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);
@@ -68,11 +54,13 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         comments,
       }),
     };
-    fetch(`${URL}/tasks`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        setToDoList([...toDoList, data.records]);
-      });
+    refetch(`${URL}/tasks`, options);
+
+    // fetch(`${URL}/tasks`, options)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setToDoList([...toDoList, data.records]);
+    //   });
   };
 
   const handleEditFormOpen = (singleTask) => {
@@ -105,18 +93,20 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
         comments,
       }),
     };
-    fetch(`${URL}/tasks/${selectedTask._id}`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        const editedToDoList = toDoList.map((task) => {
-          if (task._id === data.records._id) {
-            return data.records;
-          } else {
-            return task;
-          }
-        });
-        setToDoList(editedToDoList);
-      });
+    refetch(`${URL}/tasks/${selectedTask._id}`, options);
+
+    // fetch(`${URL}/tasks/${selectedTask._id}`, options)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     const editedToDoList = toDoList.map((task) => {
+    //       if (task._id === data.records._id) {
+    //         return data.records;
+    //       } else {
+    //         return task;
+    //       }
+    //     });
+    //     setToDoList(editedToDoList);
+    //   });
 
     const editedTask = {
       title,
@@ -143,14 +133,19 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
     setSelectedTask(null);
   };
 
+  if (toDoListLoading) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <>
+      {toDoListError && <h2>{toDoListError}</h2>}
       <Main
         onAddFormOpen={handleAddFormOpen}
         toDoList={toDoList}
         onMobileMenuOpen={handleMobileMenuOpen}
         onEditFormOpen={handleEditFormOpen}
-        columnsList={columnsList}
+        columnsList={columnsList.records}
       />
       {isModalOpen && (
         <TaskForm
@@ -158,9 +153,9 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
           onModalClose={handleModalClose}
           handleFormSubmit={mode === "add" ? handleNewTaskAdd : handleTaskEdit}
           taskToEdit={selectedTask}
-          tagsList={tagsList}
-          usersList={usersList}
-          columnsList={columnsList}
+          tagsList={tagsList.records}
+          usersList={usersList.records}
+          columnsList={columnsList.records}
         />
       )}
     </>
