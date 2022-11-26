@@ -31,7 +31,11 @@ const SingleTask = ({ task, onEditFormOpen }) => {
       </div>
       <ul className="todo__column_task-tags">
         {task.tags.map((tag) => (
-          <li key={tag._id} className="todo__column_task-tags_design">
+          <li
+            key={tag._id}
+            className="tags-input__container_single-tag"
+            style={{ backgroundColor: tag.color }}
+          >
             {tag.name}
           </li>
         ))}

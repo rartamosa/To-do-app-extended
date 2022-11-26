@@ -24,7 +24,12 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<TasksPage handleMobileMenuOpen={handleMobileMenuOpen} />}
+          element={
+            <TasksPage
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleMobileMenuClose={handleMobileMenuClose}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { TagsInput } from "react-tag-input-component";
 import DatePicker from "react-datepicker";
 import uniqid from "uniqid";
 
 import "react-datepicker/dist/react-datepicker.css";
+
+import TagsInput from "./TagsInput";
 
 const TaskForm = ({
   onModalClose,
   mode,
   taskToEdit,
   handleFormSubmit,
-  tagsList,
+  fetchedTagsList,
   usersList,
   columnsList,
 }) => {
@@ -118,7 +119,16 @@ const TaskForm = ({
             />
             <h4 className="add-window__container-controls_titles">Tags</h4>
             <div>
-              {/* <TagsInput value={tags} onChange={setTags} name="Tags" /> */}
+              <TagsInput
+                tags={tags}
+                tagsSuggestions={fetchedTagsList}
+                onTagAdd={(tag) => setTags([...tags, tag])}
+                onTagRemove={(tagToRemove) =>
+                  setTags(tags.filter((tag) => tag !== tagToRemove))
+                }
+                readOnly={true}
+                onFocus={(event) => event.target.blur()}
+              />
             </div>
             <div className="add-window__container-controls_selection">
               <div className="add-window__container-controls_selection-element">

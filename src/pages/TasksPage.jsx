@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
+import Loading from "../components/Loading";
 
-const TasksPage = ({ handleMobileMenuOpen }) => {
+const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toDoList, setToDoList] = useState([]);
   const [mode, setMode] = useState("add");
@@ -14,7 +15,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
   const [toDoListData, toDoListError, toDoListLoading] = useFetch(
     `${URL}/tasks`
   );
-  const [tagsList] = useFetch(`${URL}/tags`);
+  const [fetchedTagsList] = useFetch(`${URL}/tags`);
   const [usersList] = useFetch(`${URL}/users`);
   const [columnsList] = useFetch(`${URL}/columns`);
 
@@ -130,7 +131,12 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
   };
 
   if (toDoListLoading) {
-    return <h2>Loading...</h2>;
+    return (
+      <>
+        <Loading onMobileMenuClose={handleMobileMenuClose} />
+        <Main onMobileMenuOpen={handleMobileMenuOpen} />
+      </>
+    );
   }
 
   return (
@@ -149,7 +155,7 @@ const TasksPage = ({ handleMobileMenuOpen }) => {
           onModalClose={handleModalClose}
           handleFormSubmit={mode === "add" ? handleNewTaskAdd : handleTaskEdit}
           taskToEdit={selectedTask}
-          tagsList={tagsList.records}
+          fetchedTagsList={fetchedTagsList.records}
           usersList={usersList.records}
           columnsList={columnsList.records}
         />
