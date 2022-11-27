@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavigationItem = () => {
+const NavigationItem = ({ handleMobileMenuClose }) => {
   return (
     <>
-      <NavLink to="/" className="navlink">
+      <NavLink to="/" className="navlink" onClick={handleMobileMenuClose}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -17,7 +17,7 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">X</span>
         </div>
       </NavLink>
-      <NavLink to="/users" className="navlink">
+      <NavLink to="/users" className="navlink" onClick={handleMobileMenuClose}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -30,7 +30,11 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">3</span>
         </div>
       </NavLink>
-      <NavLink to="/columns" className="navlink">
+      <NavLink
+        to="/columns"
+        className="navlink"
+        onClick={handleMobileMenuClose}
+      >
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -43,7 +47,7 @@ const NavigationItem = () => {
           <span className="navigation__collection_element_number">3</span>
         </div>
       </NavLink>
-      <NavLink to="/tags" className="navlink">
+      <NavLink to="/tags" className="navlink" onClick={handleMobileMenuClose}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div

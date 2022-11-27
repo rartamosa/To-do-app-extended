@@ -9,6 +9,7 @@
   --tags-green-hover-color: #d1fadf;
 }
 
+/* GLOBAL STYLES */
 #root {
   display: flex;
   height: 100%;
@@ -28,6 +29,7 @@ body {
   overflow-y: hidden;
 }
 
+/* LOADING SCREEN */
 .loading__container {
   position: absolute;
   top: 0;
@@ -83,6 +85,7 @@ body {
   text-align: center;
 }
 
+/* NAVIGATION */
 .navlink {
   text-decoration: none;
 }
@@ -206,6 +209,38 @@ body {
   display: none;
 }
 
+/* STYLES REUSED IN ALL SCREENS */
+.column__element {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: var(--font-color);
+  background-color: var(--light-background-color);
+  border-radius: 8px;
+  box-shadow: 0px 0.5px 2px rgb(16 24 40 / 30%);
+  padding: 20px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.column__element-name {
+  font-size: 20px;
+  color: var(--accent-color);
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px 0;
+}
+
+.column__element-description {
+  margin: 16px 0;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* TO DO LIST SCREEN */
 .to-do {
   display: grid;
   grid-template-columns: repeat(3, 320px);
@@ -224,20 +259,6 @@ body {
   overflow-y: auto;
 }
 
-.todo__column_task {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 150%;
-  letter-spacing: -0.02em;
-  color: var(--font-color);
-  background-color: var(--light-background-color);
-  border-radius: 8px;
-  box-shadow: 0px 0.5px 2px rgb(16 24 40 / 30%);
-  padding: 20px;
-  margin-bottom: 24px;
-  cursor: pointer;
-}
-
 .todo__column_task:last-of-type {
   margin-bottom: 0;
 }
@@ -252,14 +273,6 @@ body {
   top: 0;
   background-color: var(--background-color);
   text-transform: uppercase;
-}
-
-.todo__column_task-name {
-  font-size: 20px;
-  color: var(--accent-color);
-  line-height: 30px;
-  letter-spacing: -0.02em;
-  margin: 0 0 6px 0;
 }
 
 .todo__column_task-date-person_dot {
@@ -282,14 +295,6 @@ body {
   color: var(--font-accent-color);
 }
 
-.todo__column_task-description {
-  margin: 16px 0;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-
 .todo__column_task-link {
   display: flex;
   align-items: center;
@@ -307,6 +312,7 @@ body {
   padding: 0;
   gap: 8px;
   margin: 16px 0;
+  flex-wrap: wrap;
 }
 
 .todo__column_task-tags > li {
@@ -371,10 +377,10 @@ body {
   background-color: var(--light-background-color);
   width: 742px;
   padding: 70px 70px 20px 70px;
-  position: relative;
   box-sizing: border-box;
   height: 584px;
   border-radius: 8px;
+  /* position: relative; */
 }
 
 .add-window__container-controls_titles {
@@ -441,6 +447,7 @@ body {
   display: flex;
   gap: 8px;
   overflow-y: scroll;
+  /* position: relative; */
 }
 
 .tags-input__container_single-tag {
@@ -468,6 +475,9 @@ body {
   position: absolute;
   top: 289px;
   left: 70px;
+  /* jesli position relative na .tags-input__container*/
+  /* top: 42px;
+  left: -1px; */
   background-color: var(--light-background-color);
   width: 300px;
   padding: 15px 8px;
@@ -579,6 +589,52 @@ add-window__container_input-comment {
   color: #fff;
   padding: 8px 16px;
 }
+
+/* USERS SCREEN */
+.users__main {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 240px);
+  padding: 80px 84px;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: auto;
+}
+.users__column {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 36px;
+  overflow-x: auto;
+  padding: 1px 1px 0 1px;
+}
+
+.user__container {
+  position: relative;
+}
+
+.user__container_img {
+  width: 57px;
+  height: 57px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 57px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.user__container-description {
+  margin-bottom: 0;
+}
+
+.user__column-element {
+  width: 320px;
+}
+
 /* MOBILE */
 @media all and (max-width: 767px) {
   .main__mobile-menu-button {

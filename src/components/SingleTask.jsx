@@ -3,8 +3,11 @@ import { format } from "date-fns";
 
 const SingleTask = ({ task, onEditFormOpen }) => {
   return (
-    <div className="todo__column_task" onClick={() => onEditFormOpen(task)}>
-      <h2 className="todo__column_task-name">{task.title}</h2>
+    <div
+      className="todo__column_task column__element"
+      onClick={() => onEditFormOpen(task)}
+    >
+      <h2 className="column__element-name">{task.title}</h2>
       <div className="todo__column_task-date-person">
         <div>{format(new Date(task.dueDate), "do MMM")}</div>
         <div className="todo__column_task-date-person_dot">.</div>
@@ -15,7 +18,7 @@ const SingleTask = ({ task, onEditFormOpen }) => {
           </span>
         </div>
       </div>
-      <p className="todo__column_task-description">{task.description}</p>
+      <p className="column__element-description">{task.description}</p>
       <div className="todo__column_task-link">
         <img
           src="../assets/link_icon.png"

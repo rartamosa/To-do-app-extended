@@ -9,7 +9,7 @@ const Navigation = ({ isMobileMenuOpen, onMobileMenuClose }) => {
         className="navigation__collection"
         style={{ left: isMobileMenuOpen ? "0" : "-75%" }}
       >
-        <NavigationItem />
+        <NavigationItem handleMobileMenuClose={onMobileMenuClose} />
       </nav>
       <div
         onClick={onMobileMenuClose}

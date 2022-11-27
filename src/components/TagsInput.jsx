@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   const [inputValue, setInputValue] = useState("");
@@ -6,6 +6,12 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   const [internalTagsSuggestions, setInternalTagsSuggestions] = useState(
     tagsSuggestions.filter((tag) => !tags.includes(tag._id))
   );
+
+  const inputRef = useRef(null);
+
+  const inputFocus = () => {
+    inputRef.current.focus();
+  };
 
   useEffect(() => {
     window.addEventListener("click", () => setIsSuggestionsOpen(false));
@@ -26,7 +32,6 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
         );
       }
       setInputValue("");
-      document.querySelector(".tags-input__container_input").focus();
     }
   };
 
@@ -36,13 +41,14 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
       internalTagsSuggestions.filter((tag) => tag._id !== tagToAddID)
     );
     setInputValue("");
-    document.querySelector(".tags-input__container_input").focus();
+    inputFocus();
   };
 
   const handleTagRemove = (tagToRemoveID) => {
     onTagRemove(tagToRemoveID);
     const removedTag = tagsSuggestions.find((tag) => tag._id === tagToRemoveID);
     setInternalTagsSuggestions([...internalTagsSuggestions, removedTag]);
+    inputFocus();
   };
 
   return (
@@ -70,6 +76,8 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
       <input
         className="tags-input__container_input"
         value={inputValue}
+        placeholder="Type..."
+        ref={inputRef}
         onChange={(event) => setInputValue(event.target.value)}
         onClick={(event) => {
           setIsSuggestionsOpen(true);

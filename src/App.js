@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
 import TasksPage from "./pages/TasksPage";
+import UsersPage from "./pages/UsersPage";
 
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,6 +27,15 @@ const App = () => {
           path="/"
           element={
             <TasksPage
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleMobileMenuClose={handleMobileMenuClose}
+            />
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <UsersPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
             />
