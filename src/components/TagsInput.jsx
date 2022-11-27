@@ -3,24 +3,31 @@ import React, { useState, useEffect } from "react";
 const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   const [inputValue, setInputValue] = useState("");
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
-  const [internalTagsSuggestions, setInternalTagsSuggestions] =
-    useState(tagsSuggestions);
+  const [internalTagsSuggestions, setInternalTagsSuggestions] = useState(
+    tagsSuggestions.filter((tag) => !tags.includes(tag._id))
+  );
 
   useEffect(() => {
     window.addEventListener("click", () => setIsSuggestionsOpen(false));
   }, []);
 
   const onFormSubmit = (event) => {
-    event.preventDefault();
-    const matchingTag = tagsSuggestions.find((tag) => tag.name === inputValue);
-    const existingTag = tags.find((tag) => tag === matchingTag._id);
-    if (matchingTag && !existingTag) {
-      onTagAdd(matchingTag._id);
-      setInternalTagsSuggestions(
-        internalTagsSuggestions.filter((tag) => tag._id !== matchingTag._id)
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      const matchingTag = tagsSuggestions.find(
+        (tag) => tag.name === inputValue
       );
+      const existingTag = tags.find((tag) => tag === matchingTag._id);
+      if (matchingTag && !existingTag) {
+        onTagAdd(matchingTag._id);
+        setInternalTagsSuggestions(
+          internalTagsSuggestions.filter((tag) => tag._id !== matchingTag._id)
+        );
+      }
+      setInputValue("");
+      document.querySelector(".tags-input__container_input").focus();
     }
-    setInputValue("");
   };
 
   const handleTagAdd = (tagToAddID) => {
@@ -29,6 +36,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
       internalTagsSuggestions.filter((tag) => tag._id !== tagToAddID)
     );
     setInputValue("");
+    document.querySelector(".tags-input__container_input").focus();
   };
 
   const handleTagRemove = (tagToRemoveID) => {
@@ -38,7 +46,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   };
 
   return (
-    <form className="tags-input__container" onSubmit={onFormSubmit}>
+    <div className="tags-input__container">
       {tags.map((tagID) => {
         const currentTag = tagsSuggestions.find(
           (tagToShow) => tagToShow._id === tagID
@@ -67,6 +75,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
           setIsSuggestionsOpen(true);
           event.stopPropagation();
         }}
+        onKeyPress={onFormSubmit}
       />
       {isSuggestionsOpen && internalTagsSuggestions.length > 0 && (
         <div className="tags-input__container_suggestions">
@@ -82,7 +91,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
           ))}
         </div>
       )}
-    </form>
+    </div>
   );
 };
 

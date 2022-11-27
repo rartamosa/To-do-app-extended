@@ -130,17 +130,18 @@ const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
     setSelectedTask(null);
   };
 
-  if (toDoListLoading) {
-    return (
-      <>
-        <Loading onMobileMenuClose={handleMobileMenuClose} />
-        <Main onMobileMenuOpen={handleMobileMenuOpen} />
-      </>
-    );
-  }
+  // if (toDoListLoading) {
+  //   return (
+  //     <>
+  //       <Loading onMobileMenuClose={handleMobileMenuClose} />
+  //       <Main onMobileMenuOpen={handleMobileMenuOpen} />
+  //     </>
+  //   );
+  // }
 
   return (
     <>
+      {toDoListLoading && <Loading onMobileMenuClose={handleMobileMenuClose} />}
       {toDoListError && <h2>{toDoListError}</h2>}
       <Main
         onAddFormOpen={handleAddFormOpen}

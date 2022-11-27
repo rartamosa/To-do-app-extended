@@ -11,7 +11,6 @@ const useFetch = (url, options = { method: "GET" }) => {
     fetch(url, options)
       .then((res) => res.json())
       .then((payload) => {
-        // console.log(payload);
         setData(payload);
       })
       .catch((err) => setError(err))

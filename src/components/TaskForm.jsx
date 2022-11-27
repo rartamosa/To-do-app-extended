@@ -20,7 +20,9 @@ const TaskForm = ({
     mode === "add" ? "" : taskToEdit.description
   );
   const [link, setLink] = useState(mode === "add" ? "" : taskToEdit.link);
-  const [tags, setTags] = useState(mode === "add" ? [] : taskToEdit.tags);
+  const [tags, setTags] = useState(
+    mode === "add" ? [] : taskToEdit.tags.map((tag) => tag._id)
+  );
   const [dueDate, setDueDate] = useState(
     mode === "add" ? new Date() : new Date(taskToEdit.dueDate)
   );
