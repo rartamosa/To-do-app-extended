@@ -240,6 +240,85 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.add-window__overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-window__container {
+  z-index: 1;
+  background-color: var(--light-background-color);
+  width: 742px;
+  padding: 70px 70px 20px 70px;
+  box-sizing: border-box;
+  height: 584px;
+  border-radius: 8px;
+  position: absolute;
+  /* position: relative; */
+}
+
+.add-window__container-controls_titles {
+  color: var(--font-accent-color);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.add-window__container_input {
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: var(--light-background-color);
+  font-family: "Karla";
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+}
+
+.add-window__container_input:first-of-type {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.add-window__container_button {
+  padding: 8px;
+  border: 1px solid var(--font-color);
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: "Karla";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.add-window__container_buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.add-window__container_button:last-of-type {
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 8px 16px;
+}
+
 /* TO DO LIST SCREEN */
 .to-do {
   display: grid;
@@ -353,61 +432,6 @@ body {
   border-radius: 50%;
   box-sizing: border-box;
   cursor: pointer;
-}
-
-.add-window__container {
-  z-index: 1;
-  position: absolute;
-}
-
-.add-window__overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.35);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.add-window__container {
-  z-index: 1;
-  background-color: var(--light-background-color);
-  width: 742px;
-  padding: 70px 70px 20px 70px;
-  box-sizing: border-box;
-  height: 584px;
-  border-radius: 8px;
-  /* position: relative; */
-}
-
-.add-window__container-controls_titles {
-  color: var(--font-accent-color);
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 15px;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.add-window__container_input {
-  border: none;
-  width: 100%;
-  margin-bottom: 10px;
-  background-color: var(--light-background-color);
-  font-family: "Karla";
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 22px;
-  letter-spacing: -0.02em;
-}
-
-.add-window__container_input:first-of-type {
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 36px;
 }
 
 .rti--container {
@@ -562,34 +586,6 @@ add-window__container_input-comment {
   margin-bottom: 5px;
 }
 
-.add-window__container_button {
-  padding: 8px;
-  border: 1px solid var(--font-color);
-  border-radius: 8px;
-  background-color: #fff;
-  font-family: "Karla";
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  letter-spacing: -0.02em;
-  cursor: pointer;
-}
-
-.add-window__container_buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
-
-.add-window__container_button:last-of-type {
-  background-color: var(--accent-color);
-  color: #fff;
-  padding: 8px 16px;
-}
-
 /* USERS SCREEN */
 .users__main {
   display: flex;
@@ -635,8 +631,24 @@ add-window__container_input-comment {
   width: 320px;
 }
 
+.users-form__controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.users-form__img-controls_preview {
+  background-image: url(https://static.clideo.com/files/content/506/how-to-resize-picture-for-instagram-1.jpg);
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* MOBILE */
 @media all and (max-width: 767px) {
+  /* GLOBAL STYLES */
   .main__mobile-menu-button {
     display: inline;
     border: none;
@@ -652,11 +664,13 @@ add-window__container_input-comment {
     z-index: 2;
   }
 
+  /* LOADING SCREEN */
   .loading__container {
     left: 0;
     background-color: rgba(242, 244, 247, 80%);
   }
 
+  /* NAVIGATION */
   .navigation__collection {
     position: absolute;
     width: 75%;
@@ -691,6 +705,7 @@ add-window__container_input-comment {
     transition: background-color 0.3s ease;
   }
 
+  /* STYLES REUSED IN ALL SCREENS */
   .add-window__container-controls_titles {
     margin: 0 0 5px 0;
   }
@@ -698,13 +713,6 @@ add-window__container_input-comment {
   .main_add-button {
     right: 25px;
     bottom: 25px;
-  }
-
-  .to-do {
-    width: 100%;
-    height: 100%;
-    padding: 80px 10px 100px 10px;
-    column-gap: 10px;
   }
 
   .add-window__container {
@@ -734,8 +742,21 @@ add-window__container_input-comment {
     column-gap: 20px;
     row-gap: 10px;
   }
+  /* TO DO LIST SCREEN */
+  .to-do {
+    width: 100%;
+    height: 100%;
+    padding: 80px 10px 100px 10px;
+    column-gap: 10px;
+  }
+
   .tags-input__container_suggestions {
     top: 269px;
     left: 30px;
+  }
+
+  /* USERS SCREEN */
+  .users-form__controls {
+    flex-direction: column;
   }
 }

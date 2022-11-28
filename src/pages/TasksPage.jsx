@@ -124,6 +124,7 @@ const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
     });
     setToDoList(editedToDoList);
   };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     setMode("add");
