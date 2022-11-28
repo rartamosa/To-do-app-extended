@@ -604,6 +604,7 @@ add-window__container_input-comment {
   column-gap: 36px;
   overflow-x: auto;
   padding: 1px 1px 0 1px;
+  align-content: flex-start;
 }
 
 .secondary-main__column-element {
