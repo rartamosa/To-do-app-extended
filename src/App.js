@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import TasksPage from "./pages/TasksPage";
 import UsersPage from "./pages/UsersPage";
+import ColumnsPage from "./pages/ColumnsPage";
+import TagsPage from "./pages/TagsPage";
 
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,6 +38,24 @@ const App = () => {
           path="/users"
           element={
             <UsersPage
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleMobileMenuClose={handleMobileMenuClose}
+            />
+          }
+        />
+        <Route
+          path="/columns"
+          element={
+            <ColumnsPage
+              handleMobileMenuOpen={handleMobileMenuOpen}
+              handleMobileMenuClose={handleMobileMenuClose}
+            />
+          }
+        />
+        <Route
+          path="/tags"
+          element={
+            <TagsPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
             />

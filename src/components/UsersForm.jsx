@@ -16,7 +16,6 @@ const UsersForm = ({
 
   const onUserFormSubmit = (event) => {
     event.preventDefault();
-    const id = mode === "add" ? uniqid() : userToEdit._id;
     handleUserFormSubmit(name, description, imageURL);
     onModalClose();
   };
@@ -30,7 +29,7 @@ const UsersForm = ({
             <div className="users-form__inputs">
               <h4 className="add-window__container-controls_titles">Name</h4>
               <input
-                className="add-window__container_input"
+                className="add-window__container_input secondary-main__input users-form__input secondary-main__input"
                 type="text"
                 placeholder="Type name"
                 value={name}
@@ -40,7 +39,7 @@ const UsersForm = ({
                 Description
               </h4>
               <input
-                className="add-window__container_input"
+                className="add-window__container_input users-form__input secondary-main__input"
                 type="text"
                 placeholder="Type description"
                 value={description}
@@ -50,7 +49,7 @@ const UsersForm = ({
                 ImageURL
               </h4>
               <input
-                className="add-window__container_input"
+                className="add-window__container_input users-form__input secondary-main__input"
                 type="text"
                 placeholder="Type image URL address"
                 value={imageURL}
@@ -59,7 +58,10 @@ const UsersForm = ({
             </div>
             <div className="users-form__img-controls">
               <h4 className="add-window__container-controls_titles">Previev</h4>
-              <div className="users-form__img-controls_preview"></div>
+              <div
+                className="users-form__img-controls_preview"
+                style={{ backgroundImage: `url(${imageURL})` }}
+              ></div>
             </div>
           </div>
           <div className="add-window__container_buttons">

@@ -52,53 +52,55 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   };
 
   return (
-    <div className="tags-input__container">
-      {tags.map((tagID) => {
-        const currentTag = tagsSuggestions.find(
-          (tagToShow) => tagToShow._id === tagID
-        );
-        return (
-          <span
-            className="tags-input__container_single-tag"
-            style={{ backgroundColor: currentTag.color }}
-            key={tagID}
-          >
-            {currentTag.name}
-            <span
-              className="tags-input__container_single-tag-close"
-              onClick={() => handleTagRemove(tagID)}
-            >
-              &times;
-            </span>
-          </span>
-        );
-      })}
-      <input
-        className="tags-input__container_input"
-        value={inputValue}
-        placeholder="Type..."
-        ref={inputRef}
-        onChange={(event) => setInputValue(event.target.value)}
-        onClick={(event) => {
-          setIsSuggestionsOpen(true);
-          event.stopPropagation();
-        }}
-        onKeyPress={onFormSubmit}
-      />
-      {isSuggestionsOpen && internalTagsSuggestions.length > 0 && (
-        <div className="tags-input__container_suggestions">
-          {internalTagsSuggestions.map((tag) => (
+    <div className="tags-input__wrapper">
+      <div className="tags-input__container">
+        {tags.map((tagID) => {
+          const currentTag = tagsSuggestions.find(
+            (tagToShow) => tagToShow._id === tagID
+          );
+          return (
             <span
               className="tags-input__container_single-tag"
-              style={{ backgroundColor: tag.color }}
-              key={tag._id}
-              onClick={() => handleTagAdd(tag._id)}
+              style={{ backgroundColor: currentTag.color }}
+              key={tagID}
             >
-              {tag.name}
+              {currentTag.name}
+              <span
+                className="tags-input__container_single-tag-close"
+                onClick={() => handleTagRemove(tagID)}
+              >
+                &times;
+              </span>
             </span>
-          ))}
-        </div>
-      )}
+          );
+        })}
+        <input
+          className="tags-input__container_input"
+          value={inputValue}
+          placeholder="Type..."
+          ref={inputRef}
+          onChange={(event) => setInputValue(event.target.value)}
+          onClick={(event) => {
+            setIsSuggestionsOpen(true);
+            event.stopPropagation();
+          }}
+          onKeyPress={onFormSubmit}
+        />
+        {isSuggestionsOpen && internalTagsSuggestions.length > 0 && (
+          <div className="tags-input__container_suggestions">
+            {internalTagsSuggestions.map((tag) => (
+              <span
+                className="tags-input__container_single-tag"
+                style={{ backgroundColor: tag.color }}
+                key={tag._id}
+                onClick={() => handleTagAdd(tag._id)}
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

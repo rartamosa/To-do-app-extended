@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import useFetch from "../hooks/useFetch";
+
 import Loading from "../components/Loading";
 import UsersMain from "../components/UsersMain";
 import UsersForm from "../components/UsersForm";
@@ -46,13 +47,13 @@ const UsersPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
       });
   };
 
-  const handleEditUserFormOpen = () => {
+  const handleEditUserFormOpen = (singleUser) => {
     setIsModalOpen(true);
     setMode("edit");
     setSelectedUser(singleUser);
   };
 
-  const handleUserEdit = () => (name, description, imageURL) => {
+  const handleUserEdit = (name, description, imageURL) => {
     const options = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

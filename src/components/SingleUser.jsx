@@ -1,12 +1,11 @@
 import React from "react";
 import { format } from "date-fns";
-import { render } from "react-dom";
 
 const SingleUser = ({ user, onEditUserFormOpen }) => {
   return (
     <div
-      className="column__element user__column-element"
-      onClick={() => onEditUserFormOpen}
+      className="column__element secondary-main__column-element"
+      onClick={() => onEditUserFormOpen(user)}
     >
       <div className="user__container">
         <div>

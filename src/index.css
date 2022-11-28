@@ -261,7 +261,6 @@ body {
   height: 584px;
   border-radius: 8px;
   position: absolute;
-  /* position: relative; */
 }
 
 .add-window__container-controls_titles {
@@ -471,7 +470,6 @@ body {
   display: flex;
   gap: 8px;
   overflow-y: scroll;
-  /* position: relative; */
 }
 
 .tags-input__container_single-tag {
@@ -481,6 +479,10 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.tags-input__wrapper {
+  position: relative;
 }
 
 .tags-input__container_input {
@@ -497,11 +499,8 @@ body {
 
 .tags-input__container_suggestions {
   position: absolute;
-  top: 289px;
-  left: 70px;
-  /* jesli position relative na .tags-input__container*/
-  /* top: 42px;
-  left: -1px; */
+  top: 99%;
+  left: 1px;
   background-color: var(--light-background-color);
   width: 300px;
   padding: 15px 8px;
@@ -586,8 +585,8 @@ add-window__container_input-comment {
   margin-bottom: 5px;
 }
 
-/* USERS SCREEN */
-.users__main {
+/* USERS + COLUMNS + TAGS SCREEN */
+.secondary-main {
   display: flex;
   flex-direction: column;
   width: calc(100% - 240px);
@@ -597,7 +596,7 @@ add-window__container_input-comment {
   height: 100%;
   overflow-x: auto;
 }
-.users__column {
+.secondary-main__column {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -607,6 +606,11 @@ add-window__container_input-comment {
   padding: 1px 1px 0 1px;
 }
 
+.secondary-main__column-element {
+  width: 320px;
+}
+
+/* USERS SCREEN */
 .user__container {
   position: relative;
 }
@@ -616,7 +620,7 @@ add-window__container_input-comment {
   height: 57px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 57px;
+  background-size: cover;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -627,23 +631,37 @@ add-window__container_input-comment {
   margin-bottom: 0;
 }
 
-.user__column-element {
-  width: 320px;
-}
-
 .users-form__controls {
   display: flex;
   flex-direction: row;
 }
 
 .users-form__img-controls_preview {
-  background-image: url(https://static.clideo.com/files/content/506/how-to-resize-picture-for-instagram-1.jpg);
   width: 132px;
   height: 132px;
   border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border: 1px solid var(--font-accent-color);
+  box-sizing: border-box;
+}
+
+.users-form__input {
+  width: 75%;
+}
+
+/* COLUMNS SCREEN */
+.secondary-main__input {
+  color: var(--font-accent-color);
+}
+
+/* TAGS SCREEN */
+.task-name:first-letter {
+  text-transform: capitalize;
+}
+.tag_color {
+  border: 1px solid var(--font-color);
 }
 
 /* MOBILE */
@@ -750,13 +768,11 @@ add-window__container_input-comment {
     column-gap: 10px;
   }
 
-  .tags-input__container_suggestions {
-    top: 269px;
-    left: 30px;
-  }
-
   /* USERS SCREEN */
   .users-form__controls {
     flex-direction: column;
+  }
+  .users-form__input {
+    width: 100%;
   }
 }

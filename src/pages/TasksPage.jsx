@@ -104,7 +104,6 @@ const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
         });
         setToDoList(editedToDoList);
       });
-
     const editedTask = {
       title,
       description,

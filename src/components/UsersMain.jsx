@@ -9,13 +9,13 @@ const UsersMain = ({
   onEditUserFormOpen,
 }) => {
   return (
-    <main className="to-do users__main">
+    <main className="to-do secondary-main">
       <button
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
       <h3 className="todo__column-name">users</h3>
-      <div className="users__column">
+      <div className="secondary-main__column">
         {usersList?.map((user) => (
           <SingleUser
             key={user._id}

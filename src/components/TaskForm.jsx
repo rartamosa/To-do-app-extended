@@ -107,7 +107,7 @@ const TaskForm = ({
             <input
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-              className="add-window__container_input"
+              className="add-window__container_input secondary-main__input"
               type="text"
               placeholder="Type description"
             />
@@ -115,7 +115,7 @@ const TaskForm = ({
             <input
               value={link}
               onChange={(event) => setLink(event.target.value)}
-              className="add-window__container_input"
+              className="add-window__container_input secondary-main__input"
               type="text"
               placeholder="Type link"
             />
