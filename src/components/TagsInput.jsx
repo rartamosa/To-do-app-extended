@@ -9,14 +9,17 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
 
   const inputRef = useRef(null);
 
-  const inputFocus = () => {
-    inputRef.current.focus();
-    inputRef.current.scrollIntoView();
-  };
+  useEffect(() => {
+    inputRef.current.scrollIntoView({ inline: "end" });
+  }, [tags]);
 
   useEffect(() => {
     window.addEventListener("click", () => setIsSuggestionsOpen(false));
   }, []);
+
+  const inputFocus = () => {
+    inputRef.current.focus();
+  };
 
   const onFormSubmit = (event) => {
     if (event.key === "Enter") {
@@ -89,16 +92,20 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
         />
         {isSuggestionsOpen && internalTagsSuggestions.length > 0 && (
           <div className="tags-input__container_suggestions">
-            {internalTagsSuggestions.map((tag) => (
-              <span
-                className="tags-input__container_single-tag"
-                style={{ backgroundColor: tag.color }}
-                key={tag._id}
-                onClick={() => handleTagAdd(tag._id)}
-              >
-                {tag.name}
-              </span>
-            ))}
+            {internalTagsSuggestions
+              .filter((tag) =>
+                tag.name.toLowerCase().startsWith(inputValue.toLowerCase())
+              )
+              .map((tag) => (
+                <span
+                  className="tags-input__container_single-tag"
+                  style={{ backgroundColor: tag.color }}
+                  key={tag._id}
+                  onClick={() => handleTagAdd(tag._id)}
+                >
+                  {tag.name}
+                </span>
+              ))}
           </div>
         )}
       </div>

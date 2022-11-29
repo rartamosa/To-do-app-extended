@@ -3,10 +3,10 @@ import { TwitterPicker } from "react-color";
 
 const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
   const [tagName, setTagName] = useState(mode === "add" ? "" : tagToEdit.name);
-  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [color, setColor] = useState(
     mode === "add" ? "transparent" : tagToEdit.color
   );
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
 
   const onTagFormSubmit = (event) => {
     event.preventDefault();
@@ -49,12 +49,6 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
                 style={{ backgroundColor: color }}
                 onClick={handleColorPickerOpen}
               ></div>
-              {isColorPickerOpen && (
-                <TwitterPicker
-                  onChange={handleColorChange}
-                  onClick={(event) => event.stopPropagation()}
-                />
-              )}
             </div>
           </div>
 
@@ -72,6 +66,12 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
           </div>
         </form>
       </div>
+      {isColorPickerOpen && (
+        <TwitterPicker
+          onChange={handleColorChange}
+          //   onClick={(event) => event.stopPropagation()}
+        />
+      )}
     </div>
   );
 };

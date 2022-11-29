@@ -26,7 +26,7 @@ body {
   background-color: var(--background-color);
   position: relative;
   height: 100%;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 /* LOADING SCREEN */
@@ -484,6 +484,7 @@ body {
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .tags-input__wrapper {
@@ -678,6 +679,10 @@ add-window__container_input-comment {
   border: 1px solid var(--font-accent-color);
   border-radius: 8px;
   background-color: transparent;
+}
+.twitter-picker {
+  z-index: 3;
+  position: absolute;
 }
 
 /* MOBILE */
