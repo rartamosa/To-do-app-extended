@@ -117,7 +117,7 @@ body {
 }
 
 .navigation__collection_element:hover .navigation__collection_element_name,
-.navigation__collection_element:active .navigation__collection_element_name {
+.active .navigation__collection_element .navigation__collection_element_name {
   color: var(--accent-color);
 }
 
@@ -133,14 +133,14 @@ body {
 }
 
 .navigation__collection_element:hover,
-.navigation__collection_element:active {
+.active .navigation__collection_element {
   background-color: var(--background-color);
   color: var(--accent-color);
   border-radius: 8px;
 }
 
 .navigation__collection_element:hover .navigation__collection_element_number,
-.navigation__collection_element:active .navigation__collection_element_number {
+.active .navigation__collection_element .navigation__collection_element_number {
   background-color: var(--accent-color);
   color: #fff;
 }
@@ -168,7 +168,8 @@ body {
 
 .navigation__collection_element:hover
   .navigation__collection_element-tasks-icon,
-.navigation__collection_element:active
+.active
+  .navigation__collection_element
   .navigation__collection_element-tasks-icon {
   background-image: url(../public/assets/tasks_icon_blue.svg);
 }
@@ -179,7 +180,8 @@ body {
 
 .navigation__collection_element:hover
   .navigation__collection_element-users-icon,
-.navigation__collection_element:active
+.active
+  .navigation__collection_element
   .navigation__collection_element-users-icon {
   background-image: url(../public/assets/users_icon_blue.svg);
 }
@@ -190,7 +192,8 @@ body {
 
 .navigation__collection_element:hover
   .navigation__collection_element-columns-icon,
-.navigation__collection_element:active
+.active
+  .navigation__collection_element
   .navigation__collection_element-columns-icon {
   background-image: url(../public/assets/columns_icon_blue.svg);
 }
@@ -200,7 +203,8 @@ body {
 }
 
 .navigation__collection_element:hover .navigation__collection_element-tags-icon,
-.navigation__collection_element:active
+.active
+  .navigation__collection_element
   .navigation__collection_element-tags-icon {
   background-image: url(../public/assets/tags_icon_blue.svg);
 }
@@ -479,6 +483,7 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
 }
 
 .tags-input__wrapper {
@@ -519,6 +524,7 @@ body {
   font-size: 21px;
   justify-self: flex-end;
   align-self: self-end;
+  cursor: pointer;
 }
 
 .add-window__container-controls_selection-select {
@@ -663,6 +669,15 @@ add-window__container_input-comment {
 }
 .tag_color {
   border: 1px solid var(--font-color);
+}
+.tags-input__controls-container {
+  display: flex;
+}
+.circle-picker {
+  margin-top: 10px;
+  border: 1px solid var(--font-accent-color);
+  border-radius: 8px;
+  background-color: transparent;
 }
 
 /* MOBILE */

@@ -11,6 +11,7 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
 
   const inputFocus = () => {
     inputRef.current.focus();
+    inputRef.current.scrollIntoView();
   };
 
   useEffect(() => {

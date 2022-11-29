@@ -1,54 +1,61 @@
 import React, { useState } from "react";
 import { TwitterPicker } from "react-color";
 
-// class Component extends React.Component {
-//   state = {
-//     background: `${tagToEdit.color}`,
-//   };
-
-//   handleChangeComplete = (color) => {
-//     this.setState({ background: color.hex });
-//   };
-
-//   render() {
-//     return <TwitterPicker />;
-//   }
-// }
-
-const TagsForm = ({
-  mode,
-  onModalClose,
-  onAddTagFormOpen,
-  tagToEdit,
-  handleTagFormSubmit,
-}) => {
+const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
   const [tagName, setTagName] = useState(mode === "add" ? "" : tagToEdit.name);
+  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+  const [color, setColor] = useState(
+    mode === "add" ? "transparent" : tagToEdit.color
+  );
 
   const onTagFormSubmit = (event) => {
     event.preventDefault();
-    handleTagFormSubmit(tagName);
+    handleTagFormSubmit(tagName, color);
     onModalClose();
+  };
+
+  const handleColorPickerOpen = (event) => {
+    event.stopPropagation();
+    setIsColorPickerOpen(true);
+  };
+
+  const handleColorChange = (color, event) => {
+    event.stopPropagation();
+    setColor(color.hex);
   };
 
   return (
     <div className="add-window__overlay">
-      <div className="add-window__container">
+      <div
+        className="add-window__container"
+        onClick={() => setIsColorPickerOpen(false)}
+      >
         <form onSubmit={onTagFormSubmit}>
-          <div>
+          <div className="tags-input__controls-container">
             <div>
               <h4 className="add-window__container-controls_titles">tag</h4>
               <input
-                className="add-window__container_input secondary-main__input"
+                className="add-window__container_input secondary-main__input users-form__input"
                 type="text"
                 placeholder="Type tag"
                 value={tagName}
                 onChange={(event) => setTagName(event.target.value)}
               />
             </div>
-            {/* <TwitterPicker
-              color={this.state.background}
-              onChangeComplete={this.handleChangeComplete}
-            /> */}
+            <div className="tags-input__colors-container">
+              <h4 className="add-window__container-controls_titles">Color</h4>
+              <div
+                className="users-form__img-controls_preview"
+                style={{ backgroundColor: color }}
+                onClick={handleColorPickerOpen}
+              ></div>
+              {isColorPickerOpen && (
+                <TwitterPicker
+                  onChange={handleColorChange}
+                  onClick={(event) => event.stopPropagation()}
+                />
+              )}
+            </div>
           </div>
 
           <div className="add-window__container_buttons">

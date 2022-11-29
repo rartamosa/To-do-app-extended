@@ -31,6 +31,7 @@ const TagsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
   };
 
   const handleNewTagAdd = (name, color) => {
+    console.log(name, color);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -104,7 +105,6 @@ const TagsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
         <TagsForm
           mode={mode}
           onModalClose={handleModalClose}
-          onAddTagFormOpen={handleAddTagFormOpen}
           tagToEdit={selectedTag}
           handleTagFormSubmit={mode === "add" ? handleNewTagAdd : handleTagEdit}
         />
