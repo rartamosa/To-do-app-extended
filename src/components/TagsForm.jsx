@@ -69,7 +69,8 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
       {isColorPickerOpen && (
         <TwitterPicker
           onChange={handleColorChange}
-          //   onClick={(event) => event.stopPropagation()}
+          //   triangle="top-right"
+          width="204px"
         />
       )}
     </div>

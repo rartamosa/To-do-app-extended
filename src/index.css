@@ -485,6 +485,7 @@ body {
   gap: 4px;
   cursor: pointer;
   text-transform: capitalize;
+  white-space: nowrap;
 }
 
 .tags-input__wrapper {
@@ -682,7 +683,8 @@ add-window__container_input-comment {
 }
 .twitter-picker {
   z-index: 3;
-  position: absolute;
+  position: absolute !important;
+  right: 455px;
 }
 
 /* MOBILE */
@@ -795,5 +797,14 @@ add-window__container_input-comment {
   }
   .users-form__input {
     width: 100%;
+  }
+
+  /* TAGS SCREEN */
+  .tags-input__controls-container {
+    flex-direction: column;
+  }
+  .twitter-picker {
+    left: -12px;
+    bottom: 74px;
   }
 }
