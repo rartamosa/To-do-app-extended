@@ -91,7 +91,7 @@ body {
 }
 
 .navigation__collection {
-  width: 240px;
+  width: 288px;
   height: 100vh;
   background-color: #fff;
   padding: 24px 24px 0 24px;
@@ -101,6 +101,7 @@ body {
   letter-spacing: -0.03em;
   color: var(--font-accent-color);
   border-right: 1px solid var(--font-accent-color);
+  box-sizing: border-box;
 }
 
 .navigation__collection_element {
