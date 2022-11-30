@@ -684,7 +684,8 @@ add-window__container_input-comment {
 .twitter-picker {
   z-index: 3;
   position: absolute !important;
-  right: 455px;
+  right: 111px;
+  top: 225px;
 }
 
 /* MOBILE */
@@ -804,7 +805,7 @@ add-window__container_input-comment {
     flex-direction: column;
   }
   .twitter-picker {
-    left: -12px;
-    bottom: 74px;
+    left: 31px;
+    top: 261px;
   }
 }
