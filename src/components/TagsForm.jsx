@@ -26,8 +26,11 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
 
   return (
     <div className="add-window__overlay">
-      <div className="add-window__container">
-        <div onClick={() => setIsColorPickerOpen(false)}>
+      <div className="tags-input__outer-container">
+        <div
+          className="tags-input__inner-container"
+          onClick={() => setIsColorPickerOpen(false)}
+        >
           <form onSubmit={onTagFormSubmit}>
             <div className="tags-input__controls-container">
               <div>
@@ -65,11 +68,7 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
           </form>
         </div>
         {isColorPickerOpen && (
-          <TwitterPicker
-            onChange={handleColorChange}
-            //   triangle="top-right"
-            width="204px"
-          />
+          <TwitterPicker onChange={handleColorChange} width="204px" />
         )}
       </div>
     </div>

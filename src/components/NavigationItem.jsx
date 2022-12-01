@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavigationItem = ({ handleMobileMenuClose }) => {
+const NavigationItem = ({ handleMobileMenuClose, tagsLength }) => {
   return (
     <>
       <NavLink to="/" className="navlink" onClick={handleMobileMenuClose}>
@@ -57,7 +57,9 @@ const NavigationItem = ({ handleMobileMenuClose }) => {
             />
             <p className="navigation__collection_element_name">Tags</p>
           </div>
-          <span className="navigation__collection_element_number">2</span>
+          <span className="navigation__collection_element_number">
+            {tagsLength}
+          </span>
         </div>
       </NavLink>
     </>

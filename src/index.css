@@ -688,6 +688,20 @@ add-window__container_input-comment {
   right: 111px;
   top: 225px;
 }
+.tags-input__outer-container {
+  z-index: 1;
+  background-color: var(--light-background-color);
+  width: 742px;
+  box-sizing: border-box;
+  height: 584px;
+  border-radius: 8px;
+  position: absolute;
+}
+.tags-input__inner-container {
+  padding: 70px 70px 20px 70px;
+  height: 100%;
+  box-sizing: border-box;
+}
 
 /* MOBILE */
 @media all and (max-width: 767px) {

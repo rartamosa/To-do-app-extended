@@ -6,23 +6,27 @@ import Loading from "../components/Loading";
 import TagsMain from "../components/TagsMain";
 import TagsForm from "../components/TagsForm";
 
-const TagsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
+import { URL } from "../utils/commons";
+
+const TagsPage = ({
+  handleMobileMenuOpen,
+  handleMobileMenuClose,
+  tagsListData,
+  tagsListError,
+  tagsListLoading,
+  tagsList,
+  setTagsList,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tagsList, setTagsList] = useState([]);
+  // const [tagsList, setTagsList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTag, setSelectedTag] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
-
-  const [tagsListData, tagsListError, tagsListLoading] = useFetch(
-    `${URL}/tags`
-  );
-
-  useEffect(() => {
-    if (tagsListData.records) {
-      setTagsList(tagsListData.records);
-    }
-  }, [tagsListData]);
+  // useEffect(() => {
+  //   if (tagsListData.records) {
+  //     setTagsList(tagsListData.records);
+  //   }
+  // }, [tagsListData]);
 
   const handleAddTagFormOpen = () => {
     setIsModalOpen(true);
@@ -31,7 +35,6 @@ const TagsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
   };
 
   const handleNewTagAdd = (name, color) => {
-    console.log(name, color);
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -94,7 +97,7 @@ const TagsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
   return (
     <>
       {tagsListLoading && <Loading onMobileMenuClose={handleMobileMenuClose} />}
-      {tagsListError && <h2>{tagsListError}</h2>}
+      {tagsListError && <h2>{tagsListError.message}</h2>}
       <TagsMain
         onMobileMenuOpen={handleMobileMenuOpen}
         tagsList={tagsList}

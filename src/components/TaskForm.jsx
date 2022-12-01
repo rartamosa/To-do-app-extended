@@ -11,7 +11,7 @@ const TaskForm = ({
   mode,
   taskToEdit,
   handleFormSubmit,
-  fetchedTagsList,
+  tagsListData,
   usersList,
   columnsList,
 }) => {
@@ -123,7 +123,7 @@ const TaskForm = ({
             <div>
               <TagsInput
                 tags={tags}
-                tagsSuggestions={fetchedTagsList}
+                tagsSuggestions={tagsListData}
                 onTagAdd={(tag) => setTags([...tags, tag])}
                 onTagRemove={(tagToRemove) =>
                   setTags(tags.filter((tag) => tag !== tagToRemove))

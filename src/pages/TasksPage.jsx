@@ -5,7 +5,11 @@ import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
 import Loading from "../components/Loading";
 
-const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
+const TasksPage = ({
+  handleMobileMenuOpen,
+  handleMobileMenuClose,
+  tagsListData,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toDoList, setToDoList] = useState([]);
   const [mode, setMode] = useState("add");
@@ -15,7 +19,7 @@ const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
   const [toDoListData, toDoListError, toDoListLoading] = useFetch(
     `${URL}/tasks`
   );
-  const [fetchedTagsList] = useFetch(`${URL}/tags`);
+  // const [fetchedTagsList] = useFetch(`${URL}/tags`);
   const [usersList] = useFetch(`${URL}/users`);
   const [columnsList] = useFetch(`${URL}/columns`);
 
@@ -147,7 +151,7 @@ const TasksPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
           onModalClose={handleModalClose}
           handleFormSubmit={mode === "add" ? handleNewTaskAdd : handleTaskEdit}
           taskToEdit={selectedTask}
-          fetchedTagsList={fetchedTagsList.records}
+          tagsListData={tagsListData.records}
           usersList={usersList.records}
           columnsList={columnsList.records}
         />

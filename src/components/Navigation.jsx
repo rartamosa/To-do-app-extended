@@ -2,14 +2,17 @@ import React from "react";
 
 import NavigationItem from "./NavigationItem";
 
-const Navigation = ({ isMobileMenuOpen, onMobileMenuClose }) => {
+const Navigation = ({ isMobileMenuOpen, onMobileMenuClose, tagsLength }) => {
   return (
     <>
       <nav
         className="navigation__collection"
         style={{ left: isMobileMenuOpen ? "0" : "-75%" }}
       >
-        <NavigationItem handleMobileMenuClose={onMobileMenuClose} />
+        <NavigationItem
+          handleMobileMenuClose={onMobileMenuClose}
+          tagsLength={tagsLength}
+        />
       </nav>
       <div
         onClick={onMobileMenuClose}
