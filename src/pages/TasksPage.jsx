@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import useFetch from "../hooks/useFetch";
 import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
 import Loading from "../components/Loading";
@@ -10,7 +9,6 @@ import { URL } from "../utils/commons";
 const TasksPage = ({
   handleMobileMenuOpen,
   handleMobileMenuClose,
-  toDoListData,
   toDoListError,
   toDoListLoading,
   toDoList,
@@ -20,20 +18,8 @@ const TasksPage = ({
   tagsListData,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [toDoList, setToDoList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
-
-  // const URL = "https://todo-api-mwy8.onrender.com";
-  // const [toDoListData, toDoListError, toDoListLoading] = useFetch(
-  //   `${URL}/tasks`
-  // );
-
-  // useEffect(() => {
-  //   if (toDoListData.records) {
-  //     setToDoList(toDoListData.records);
-  //   }
-  // }, [toDoListData]);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);

@@ -82,7 +82,6 @@ const App = () => {
             <TasksPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
-              toDoListData={toDoListData}
               toDoListError={toDoListError}
               toDoListLoading={toDoListLoading}
               toDoList={toDoList}
@@ -99,7 +98,6 @@ const App = () => {
             <UsersPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
-              usersListData={usersListData}
               usersListError={usersListError}
               usersListLoading={usersListLoading}
               usersList={usersList}
@@ -113,7 +111,6 @@ const App = () => {
             <ColumnsPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
-              columnsListData={columnsListData}
               columnsListError={columnsListError}
               columnsListLoading={columnsListLoading}
               columnsList={columnsList}
@@ -127,7 +124,6 @@ const App = () => {
             <TagsPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
-              tagsListData={tagsListData}
               tagsListError={tagsListError}
               tagsListLoading={tagsListLoading}
               tagsList={tagsList}

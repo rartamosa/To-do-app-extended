@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-import useFetch from "../hooks/useFetch";
+import React, { useState } from "react";
 
 import Loading from "../components/Loading";
 import TagsMain from "../components/TagsMain";
@@ -11,7 +9,6 @@ import { URL } from "../utils/commons";
 const TagsPage = ({
   handleMobileMenuOpen,
   handleMobileMenuClose,
-  tagsListData,
   tagsListError,
   tagsListLoading,
   tagsList,

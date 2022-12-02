@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-import useFetch from "../hooks/useFetch";
+import React, { useState } from "react";
 
 import Loading from "../components/Loading";
 import ColumnsMain from "../components/ColumnsMain";
@@ -11,7 +9,6 @@ import { URL } from "../utils/commons";
 const ColumnsPage = ({
   handleMobileMenuOpen,
   handleMobileMenuClose,
-  columnsListData,
   columnsListError,
   columnsListLoading,
   columnsList,
@@ -101,7 +98,6 @@ const ColumnsPage = ({
         <ColumnsForm
           mode={mode}
           onModalClose={handleModalClose}
-          onAddColumnFormOpen={handleAddColumnFormOpen}
           columnToEdit={selectedColumn}
           handleColumnFormSubmit={
             mode === "add" ? handleNewColumnAdd : handleColumnEdit

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import useFetch from "../hooks/useFetch";
-
 import Loading from "../components/Loading";
 import UsersMain from "../components/UsersMain";
 import UsersForm from "../components/UsersForm";
@@ -11,7 +9,6 @@ import { URL } from "../utils/commons";
 const UsersPage = ({
   handleMobileMenuOpen,
   handleMobileMenuClose,
-  usersListData,
   usersListError,
   usersListLoading,
   usersList,
