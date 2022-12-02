@@ -1,7 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavigationItem = ({ handleMobileMenuClose, tagsLength }) => {
+const NavigationItem = ({
+  handleMobileMenuClose,
+  tasksLength,
+  usersLength,
+  columnsLength,
+  tagsLength,
+}) => {
   return (
     <>
       <NavLink to="/" className="navlink" onClick={handleMobileMenuClose}>
@@ -14,7 +20,9 @@ const NavigationItem = ({ handleMobileMenuClose, tagsLength }) => {
             />
             <p className="navigation__collection_element_name">Tasks</p>
           </div>
-          <span className="navigation__collection_element_number">X</span>
+          <span className="navigation__collection_element_number">
+            {tasksLength}
+          </span>
         </div>
       </NavLink>
       <NavLink to="/users" className="navlink" onClick={handleMobileMenuClose}>
@@ -27,7 +35,9 @@ const NavigationItem = ({ handleMobileMenuClose, tagsLength }) => {
             />
             <p className="navigation__collection_element_name">Users</p>
           </div>
-          <span className="navigation__collection_element_number">3</span>
+          <span className="navigation__collection_element_number">
+            {usersLength}
+          </span>
         </div>
       </NavLink>
       <NavLink
@@ -44,7 +54,9 @@ const NavigationItem = ({ handleMobileMenuClose, tagsLength }) => {
             />
             <p className="navigation__collection_element_name">Columns</p>
           </div>
-          <span className="navigation__collection_element_number">3</span>
+          <span className="navigation__collection_element_number">
+            {columnsLength}
+          </span>
         </div>
       </NavLink>
       <NavLink to="/tags" className="navlink" onClick={handleMobileMenuClose}>

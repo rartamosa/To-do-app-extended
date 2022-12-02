@@ -5,29 +5,35 @@ import Main from "../components/Main";
 import TaskForm from "../components/TaskForm";
 import Loading from "../components/Loading";
 
+import { URL } from "../utils/commons";
+
 const TasksPage = ({
   handleMobileMenuOpen,
   handleMobileMenuClose,
+  toDoListData,
+  toDoListError,
+  toDoListLoading,
+  toDoList,
+  setToDoList,
+  usersListData,
+  columnsListData,
   tagsListData,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [toDoList, setToDoList] = useState([]);
+  // const [toDoList, setToDoList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const URL = "https://todo-api-mwy8.onrender.com";
-  const [toDoListData, toDoListError, toDoListLoading] = useFetch(
-    `${URL}/tasks`
-  );
-  // const [fetchedTagsList] = useFetch(`${URL}/tags`);
-  const [usersList] = useFetch(`${URL}/users`);
-  const [columnsList] = useFetch(`${URL}/columns`);
+  // const URL = "https://todo-api-mwy8.onrender.com";
+  // const [toDoListData, toDoListError, toDoListLoading] = useFetch(
+  //   `${URL}/tasks`
+  // );
 
-  useEffect(() => {
-    if (toDoListData.records) {
-      setToDoList(toDoListData.records);
-    }
-  }, [toDoListData]);
+  // useEffect(() => {
+  //   if (toDoListData.records) {
+  //     setToDoList(toDoListData.records);
+  //   }
+  // }, [toDoListData]);
 
   const handleAddFormOpen = () => {
     setIsModalOpen(true);
@@ -143,7 +149,7 @@ const TasksPage = ({
         toDoList={toDoList}
         onMobileMenuOpen={handleMobileMenuOpen}
         onEditFormOpen={handleEditFormOpen}
-        columnsList={columnsList.records}
+        columnsListData={columnsListData.records}
       />
       {isModalOpen && (
         <TaskForm
@@ -152,8 +158,8 @@ const TasksPage = ({
           handleFormSubmit={mode === "add" ? handleNewTaskAdd : handleTaskEdit}
           taskToEdit={selectedTask}
           tagsListData={tagsListData.records}
-          usersList={usersList.records}
-          columnsList={columnsList.records}
+          usersListData={usersListData.records}
+          columnsListData={columnsListData.records}
         />
       )}
     </>

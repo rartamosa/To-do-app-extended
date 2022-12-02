@@ -7,7 +7,7 @@ const Main = ({
   toDoList,
   onMobileMenuOpen,
   onEditFormOpen,
-  columnsList,
+  columnsListData,
 }) => {
   return (
     <main className="to-do">
@@ -15,7 +15,7 @@ const Main = ({
         onClick={onMobileMenuOpen}
         className="main__mobile-menu-button hidden"
       ></button>
-      {columnsList?.map((column) => (
+      {columnsListData?.map((column) => (
         <ToDoColumn
           key={column._id}
           columnName={column.name}

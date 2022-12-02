@@ -6,23 +6,20 @@ import Loading from "../components/Loading";
 import UsersMain from "../components/UsersMain";
 import UsersForm from "../components/UsersForm";
 
-const UsersPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
+import { URL } from "../utils/commons";
+
+const UsersPage = ({
+  handleMobileMenuOpen,
+  handleMobileMenuClose,
+  usersListData,
+  usersListError,
+  usersListLoading,
+  usersList,
+  setUsersList,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [usersList, setUsersList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedUser, setSelectedUser] = useState(null);
-
-  const URL = "https://todo-api-mwy8.onrender.com";
-
-  const [usersListData, usersListError, usersListLoading] = useFetch(
-    `${URL}/users`
-  );
-
-  useEffect(() => {
-    if (usersListData.records) {
-      setUsersList(usersListData.records);
-    }
-  }, [usersListData]);
 
   const handleAddUserFormOpen = () => {
     setIsModalOpen(true);

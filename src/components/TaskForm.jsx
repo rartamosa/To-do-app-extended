@@ -11,9 +11,9 @@ const TaskForm = ({
   mode,
   taskToEdit,
   handleFormSubmit,
+  usersListData,
+  columnsListData,
   tagsListData,
-  usersList,
-  columnsList,
 }) => {
   const [title, setTitle] = useState(mode === "add" ? "" : taskToEdit.title);
   const [description, setDescription] = useState(
@@ -35,7 +35,7 @@ const TaskForm = ({
   const [singleComment, setSingleComment] = useState("");
   const [column, setColumn] = useState(
     mode === "add"
-      ? columnsList.find((column) => column.name === "to do")._id
+      ? columnsListData.find((column) => column.name === "to do")._id
       : taskToEdit.column._id
   );
 
@@ -160,7 +160,7 @@ const TaskForm = ({
                   <option value={""} disabled hidden>
                     Choose
                   </option>
-                  {usersList.map((user) => (
+                  {usersListData.map((user) => (
                     <option key={user._id} value={user._id}>
                       {user.name}
                     </option>
@@ -183,7 +183,7 @@ const TaskForm = ({
                   id={column._id}
                   disabled={mode === "add" ? true : false}
                 >
-                  {columnsList.map((column) => (
+                  {columnsListData.map((column) => (
                     <option key={column._id} value={column._id}>
                       {column.name}
                     </option>

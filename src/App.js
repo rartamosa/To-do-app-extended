@@ -12,11 +12,44 @@ import { URL } from "./utils/commons";
 
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [toDoList, setToDoList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
+  const [columnsList, setColumnsList] = useState([]);
   const [tagsList, setTagsList] = useState([]);
+
+  const [toDoListData, toDoListError, toDoListLoading] = useFetch(
+    `${URL}/tasks`
+  );
+
+  const [usersListData, usersListError, usersListLoading] = useFetch(
+    `${URL}/users`
+  );
+
+  const [columnsListData, columnsListError, columnsListLoading] = useFetch(
+    `${URL}/columns`
+  );
 
   const [tagsListData, tagsListError, tagsListLoading] = useFetch(
     `${URL}/tags`
   );
+
+  useEffect(() => {
+    if (toDoListData.records) {
+      setToDoList(toDoListData.records);
+    }
+  }, [toDoListData]);
+
+  useEffect(() => {
+    if (usersListData.records) {
+      setUsersList(usersListData.records);
+    }
+  }, [usersListData]);
+
+  useEffect(() => {
+    if (columnsListData.records) {
+      setColumnsList(columnsListData.records);
+    }
+  }, [columnsListData]);
 
   useEffect(() => {
     if (tagsListData.records) {
@@ -37,6 +70,9 @@ const App = () => {
       <Navigation
         isMobileMenuOpen={isMobileMenuOpen}
         onMobileMenuClose={handleMobileMenuClose}
+        tasksLength={toDoList.length}
+        usersLength={usersList.length}
+        columnsLength={columnsList.length}
         tagsLength={tagsList.length}
       />
       <Routes>
@@ -46,6 +82,13 @@ const App = () => {
             <TasksPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
+              toDoListData={toDoListData}
+              toDoListError={toDoListError}
+              toDoListLoading={toDoListLoading}
+              toDoList={toDoList}
+              setToDoList={setToDoList}
+              usersListData={usersListData}
+              columnsListData={columnsListData}
               tagsListData={tagsListData}
             />
           }
@@ -56,6 +99,11 @@ const App = () => {
             <UsersPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
+              usersListData={usersListData}
+              usersListError={usersListError}
+              usersListLoading={usersListLoading}
+              usersList={usersList}
+              setUsersList={setUsersList}
             />
           }
         />
@@ -65,6 +113,11 @@ const App = () => {
             <ColumnsPage
               handleMobileMenuOpen={handleMobileMenuOpen}
               handleMobileMenuClose={handleMobileMenuClose}
+              columnsListData={columnsListData}
+              columnsListError={columnsListError}
+              columnsListLoading={columnsListLoading}
+              columnsList={columnsList}
+              setColumnsList={setColumnsList}
             />
           }
         />

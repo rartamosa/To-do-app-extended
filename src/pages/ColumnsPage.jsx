@@ -6,23 +6,20 @@ import Loading from "../components/Loading";
 import ColumnsMain from "../components/ColumnsMain";
 import ColumnsForm from "../components/ColumnsForm";
 
-const ColumnsPage = ({ handleMobileMenuOpen, handleMobileMenuClose }) => {
+import { URL } from "../utils/commons";
+
+const ColumnsPage = ({
+  handleMobileMenuOpen,
+  handleMobileMenuClose,
+  columnsListData,
+  columnsListError,
+  columnsListLoading,
+  columnsList,
+  setColumnsList,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [columnsList, setColumnsList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedColumn, setSelectedColumn] = useState(null);
-
-  const URL = "https://todo-api-mwy8.onrender.com";
-
-  const [columnsListData, columnsListError, columnsListLoading] = useFetch(
-    `${URL}/columns`
-  );
-
-  useEffect(() => {
-    if (columnsListData.records) {
-      setColumnsList(columnsListData.records);
-    }
-  }, [columnsListData]);
 
   const handleAddColumnFormOpen = () => {
     setIsModalOpen(true);

@@ -583,6 +583,11 @@ add-window__container_input-comment {
   width: 100%;
   background-color: var(--light-background-color);
   font-family: "Karla";
+  /* text-transform: capitalize; */
+}
+
+.add-window__container_input-comment:first-letter,
+.add-window__container-controls-comment:first-letter {
   text-transform: capitalize;
 }
 

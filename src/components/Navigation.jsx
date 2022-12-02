@@ -2,7 +2,14 @@ import React from "react";
 
 import NavigationItem from "./NavigationItem";
 
-const Navigation = ({ isMobileMenuOpen, onMobileMenuClose, tagsLength }) => {
+const Navigation = ({
+  isMobileMenuOpen,
+  onMobileMenuClose,
+  tasksLength,
+  usersLength,
+  tagsLength,
+  columnsLength,
+}) => {
   return (
     <>
       <nav
@@ -11,6 +18,9 @@ const Navigation = ({ isMobileMenuOpen, onMobileMenuClose, tagsLength }) => {
       >
         <NavigationItem
           handleMobileMenuClose={onMobileMenuClose}
+          tasksLength={tasksLength}
+          usersLength={usersLength}
+          columnsLength={columnsLength}
           tagsLength={tagsLength}
         />
       </nav>

@@ -18,15 +18,8 @@ const TagsPage = ({
   setTagsList,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [tagsList, setTagsList] = useState([]);
   const [mode, setMode] = useState("add");
   const [selectedTag, setSelectedTag] = useState(null);
-
-  // useEffect(() => {
-  //   if (tagsListData.records) {
-  //     setTagsList(tagsListData.records);
-  //   }
-  // }, [tagsListData]);
 
   const handleAddTagFormOpen = () => {
     setIsModalOpen(true);
