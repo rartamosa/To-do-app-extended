@@ -6,7 +6,6 @@ const Loading = ({ onMobileMenuClose }) => {
 
   useEffect(() => {
     const intervalID = setInterval(() => {
-      console.log(index);
       if (index < loadingPhrases.length - 1) {
         setIndex(index + 1);
       } else {

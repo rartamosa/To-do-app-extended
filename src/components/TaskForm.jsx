@@ -38,21 +38,25 @@ const TaskForm = ({
       ? columnsListData.find((column) => column.name === "to do")._id
       : taskToEdit.column._id
   );
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+    setIsFormSubmitted(true);
     const id = mode === "add" ? uniqid() : taskToEdit._id;
-    handleFormSubmit(
-      title,
-      description,
-      link,
-      tags,
-      dueDate,
-      assignee,
-      column,
-      comments
-    );
-    onModalClose();
+    if (title && description && link && assignee) {
+      handleFormSubmit(
+        title,
+        description,
+        link,
+        tags,
+        dueDate,
+        assignee,
+        column,
+        comments
+      );
+      onModalClose();
+    }
   };
 
   const addNewComment = (event) => {
@@ -101,6 +105,9 @@ const TaskForm = ({
               type="text"
               placeholder="Type title"
             />
+            {isFormSubmitted && !title && (
+              <span className="add-window__error">* Title can't be empty</span>
+            )}
             <h4 className="add-window__container-controls_titles">
               Description
             </h4>
@@ -111,6 +118,11 @@ const TaskForm = ({
               type="text"
               placeholder="Type description"
             />
+            {isFormSubmitted && !description && (
+              <span className="add-window__error">
+                * Description can't be empty
+              </span>
+            )}
             <h4 className="add-window__container-controls_titles">Link</h4>
             <input
               value={link}
@@ -119,6 +131,9 @@ const TaskForm = ({
               type="text"
               placeholder="Type link"
             />
+            {isFormSubmitted && !link && (
+              <span className="add-window__error">* Link can't be empty</span>
+            )}
             <h4 className="add-window__container-controls_titles">Tags</h4>
             <div>
               <TagsInput
@@ -166,6 +181,11 @@ const TaskForm = ({
                     </option>
                   ))}
                 </select>
+                {isFormSubmitted && !assignee && (
+                  <span className="add-window__error add-window__error-absolute">
+                    * You must choose an assignee
+                  </span>
+                )}
               </div>
               <div className="add-window__container-controls_selection-element">
                 <h4 className="add-window__container-controls_titles">

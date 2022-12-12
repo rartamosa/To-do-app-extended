@@ -322,6 +322,21 @@ body {
   padding: 8px 16px;
 }
 
+.add-window__container-controls_selection-element {
+  position: relative;
+}
+
+.add-window__error {
+  color: red;
+  font-size: 12px;
+}
+
+.add-window__error-absolute {
+  position: absolute;
+  left: 5px;
+  top: 56px;
+}
+
 /* TO DO LIST SCREEN */
 .to-do {
   display: grid;
@@ -806,6 +821,13 @@ add-window__container_input-comment {
     column-gap: 20px;
     row-gap: 10px;
   }
+
+  .add-window__error-absolute {
+    position: absolute;
+    left: 6px;
+    top: 61px;
+  }
+
   /* TO DO LIST SCREEN */
   .to-do {
     width: 100%;
