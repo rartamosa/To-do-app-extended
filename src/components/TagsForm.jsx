@@ -7,11 +7,15 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
     mode === "add" ? "transparent" : tagToEdit.color
   );
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const onTagFormSubmit = (event) => {
     event.preventDefault();
-    handleTagFormSubmit(tagName, color);
-    onModalClose();
+    setIsFormSubmitted(true);
+    if (tagName && color) {
+      handleTagFormSubmit(tagName, color);
+      onModalClose();
+    }
   };
 
   const handleColorPickerOpen = (event) => {
@@ -42,6 +46,11 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
                   value={tagName}
                   onChange={(event) => setTagName(event.target.value)}
                 />
+                {isFormSubmitted && !tagName && (
+                  <span className="add-window__error">
+                    * You have to add tag name
+                  </span>
+                )}
               </div>
               <div className="tags-input__colors-container">
                 <h4 className="add-window__container-controls_titles">Color</h4>
@@ -50,6 +59,11 @@ const TagsForm = ({ mode, onModalClose, tagToEdit, handleTagFormSubmit }) => {
                   style={{ backgroundColor: color }}
                   onClick={handleColorPickerOpen}
                 ></div>
+                {isFormSubmitted && color === "transparent" && (
+                  <span className="add-window__error">
+                    * You have to add tag color
+                  </span>
+                )}
               </div>
             </div>
 

@@ -13,11 +13,15 @@ const UsersForm = ({
   const [imageURL, setImageURL] = useState(
     mode === "add" ? "" : userToEdit.imageURL
   );
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const onUserFormSubmit = (event) => {
     event.preventDefault();
-    handleUserFormSubmit(name, description, imageURL);
-    onModalClose();
+    setIsFormSubmitted(true);
+    if (name && description && imageURL) {
+      handleUserFormSubmit(name, description, imageURL);
+      onModalClose();
+    }
   };
 
   return (
@@ -35,6 +39,11 @@ const UsersForm = ({
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
+              {isFormSubmitted && !name && (
+                <span className="add-window__error">
+                  * You have to add your name
+                </span>
+              )}
               <h4 className="add-window__container-controls_titles">
                 Description
               </h4>
@@ -45,6 +54,11 @@ const UsersForm = ({
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
               />
+              {isFormSubmitted && !description && (
+                <span className="add-window__error">
+                  * You have to add description
+                </span>
+              )}
               <h4 className="add-window__container-controls_titles">
                 ImageURL
               </h4>
@@ -55,6 +69,11 @@ const UsersForm = ({
                 value={imageURL}
                 onChange={(event) => setImageURL(event.target.value)}
               />
+              {isFormSubmitted && !imageURL && (
+                <span className="add-window__error">
+                  * You have to add your avatar
+                </span>
+              )}
             </div>
             <div className="users-form__img-controls">
               <h4 className="add-window__container-controls_titles">Previev</h4>

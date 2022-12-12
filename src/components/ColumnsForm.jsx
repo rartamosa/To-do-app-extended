@@ -9,11 +9,15 @@ const ColumnsForm = ({
   const [columnName, setColumnName] = useState(
     mode === "add" ? "" : columnToEdit.name
   );
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const onColumnFormSubmit = (event) => {
     event.preventDefault();
-    handleColumnFormSubmit(columnName);
-    onModalClose();
+    setIsFormSubmitted(true);
+    if (columnName) {
+      handleColumnFormSubmit(columnName);
+      onModalClose();
+    }
   };
 
   return (
@@ -28,6 +32,11 @@ const ColumnsForm = ({
             value={columnName}
             onChange={(event) => setColumnName(event.target.value)}
           />
+          {isFormSubmitted && !columnName && (
+            <span className="add-window__error">
+              * You have to add column name
+            </span>
+          )}
           <div className="add-window__container_buttons">
             <button
               onClick={onModalClose}
