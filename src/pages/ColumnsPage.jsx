@@ -7,8 +7,7 @@ import ColumnsForm from "../components/ColumnsForm";
 import { URL } from "../utils/commons";
 
 const ColumnsPage = ({
-  handleMobileMenuOpen,
-  handleMobileMenuClose,
+  onMobileMenuToggle,
   columnsListError,
   columnsListLoading,
   columnsList,
@@ -85,11 +84,10 @@ const ColumnsPage = ({
   return (
     <>
       {columnsListLoading && (
-        <Loading onMobileMenuClose={handleMobileMenuClose} />
+        <Loading onMobileMenuToggle={onMobileMenuToggle} />
       )}
       {columnsListError && <h2>{columnsListError}</h2>}
       <ColumnsMain
-        onMobileMenuOpen={handleMobileMenuOpen}
         columnsList={columnsList}
         onAddColumnFormOpen={handleAddColumnFormOpen}
         onEditColumnFormOpen={handleEditColumnFormOpen}

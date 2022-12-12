@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavigationItem = ({
-  handleMobileMenuClose,
+  onMobileMenuToggle,
   tasksLength,
   usersLength,
   columnsLength,
@@ -10,7 +10,7 @@ const NavigationItem = ({
 }) => {
   return (
     <>
-      <NavLink to="/" className="navlink" onClick={handleMobileMenuClose}>
+      <NavLink to="/" className="navlink" onClick={onMobileMenuToggle}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -25,7 +25,7 @@ const NavigationItem = ({
           </span>
         </div>
       </NavLink>
-      <NavLink to="/users" className="navlink" onClick={handleMobileMenuClose}>
+      <NavLink to="/users" className="navlink" onClick={onMobileMenuToggle}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -40,11 +40,7 @@ const NavigationItem = ({
           </span>
         </div>
       </NavLink>
-      <NavLink
-        to="/columns"
-        className="navlink"
-        onClick={handleMobileMenuClose}
-      >
+      <NavLink to="/columns" className="navlink" onClick={onMobileMenuToggle}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div
@@ -59,7 +55,7 @@ const NavigationItem = ({
           </span>
         </div>
       </NavLink>
-      <NavLink to="/tags" className="navlink" onClick={handleMobileMenuClose}>
+      <NavLink to="/tags" className="navlink" onClick={onMobileMenuToggle}>
         <div className="navigation__collection_element">
           <div className="navigation__collection_element-1st">
             <div

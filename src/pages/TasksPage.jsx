@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-import Main from "../components/Main";
+import TasksMain from "../components/TasksMain";
 import TaskForm from "../components/TaskForm";
 import Loading from "../components/Loading";
 
 import { URL } from "../utils/commons";
 
 const TasksPage = ({
-  handleMobileMenuOpen,
-  handleMobileMenuClose,
+  onMobileMenuToggle,
   toDoListError,
   toDoListLoading,
   toDoList,
@@ -128,12 +127,11 @@ const TasksPage = ({
 
   return (
     <>
-      {toDoListLoading && <Loading onMobileMenuClose={handleMobileMenuClose} />}
+      {toDoListLoading && <Loading onMobileMenuClose={onMobileMenuToggle} />}
       {toDoListError && <h2>{toDoListError}</h2>}
-      <Main
+      <TasksMain
         onAddFormOpen={handleAddFormOpen}
         toDoList={toDoList}
-        onMobileMenuOpen={handleMobileMenuOpen}
         onEditFormOpen={handleEditFormOpen}
         columnsListData={columnsListData.records}
       />

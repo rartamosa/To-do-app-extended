@@ -2,18 +2,9 @@ import React from "react";
 
 import SingleTag from "./SingleTag";
 
-const TagsMain = ({
-  onMobileMenuOpen,
-  tagsList,
-  onAddTagFormOpen,
-  onEditTagFormOpen,
-}) => {
+const TagsMain = ({ tagsList, onAddTagFormOpen, onEditTagFormOpen }) => {
   return (
     <main className="to-do secondary-main">
-      <button
-        onClick={onMobileMenuOpen}
-        className="main__mobile-menu-button hidden"
-      ></button>
       <h3 className="todo__column-name">tags</h3>
       <div className="secondary-main__column">
         {tagsList.map((tag) => (

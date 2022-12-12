@@ -57,31 +57,30 @@ const App = () => {
     }
   }, [tagsListData]);
 
-  const handleMobileMenuOpen = () => {
-    setIsMobileMenuOpen(true);
-  };
-
-  const handleMobileMenuClose = () => {
-    setIsMobileMenuOpen(false);
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen((prevState) => !prevState);
   };
 
   return (
     <BrowserRouter>
       <Navigation
         isMobileMenuOpen={isMobileMenuOpen}
-        onMobileMenuClose={handleMobileMenuClose}
+        onMobileMenuToggle={handleMobileMenuToggle}
         tasksLength={toDoList.length}
         usersLength={usersList.length}
         columnsLength={columnsList.length}
         tagsLength={tagsList.length}
       />
+      <button
+        onClick={handleMobileMenuToggle}
+        className="main__mobile-menu-button hidden"
+      ></button>
       <Routes>
         <Route
           path="/"
           element={
             <TasksPage
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleMobileMenuClose={handleMobileMenuClose}
+              onMobileMenuToggle={handleMobileMenuToggle}
               toDoListError={toDoListError}
               toDoListLoading={toDoListLoading}
               toDoList={toDoList}
@@ -96,8 +95,7 @@ const App = () => {
           path="/users"
           element={
             <UsersPage
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleMobileMenuClose={handleMobileMenuClose}
+              onMobileMenuToggle={handleMobileMenuToggle}
               usersListError={usersListError}
               usersListLoading={usersListLoading}
               usersList={usersList}
@@ -109,8 +107,7 @@ const App = () => {
           path="/columns"
           element={
             <ColumnsPage
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleMobileMenuClose={handleMobileMenuClose}
+              onMobileMenuToggle={handleMobileMenuToggle}
               columnsListError={columnsListError}
               columnsListLoading={columnsListLoading}
               columnsList={columnsList}
@@ -122,8 +119,7 @@ const App = () => {
           path="/tags"
           element={
             <TagsPage
-              handleMobileMenuOpen={handleMobileMenuOpen}
-              handleMobileMenuClose={handleMobileMenuClose}
+              onMobileMenuToggle={handleMobileMenuToggle}
               tagsListError={tagsListError}
               tagsListLoading={tagsListLoading}
               tagsList={tagsList}

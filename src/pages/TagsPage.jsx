@@ -7,8 +7,7 @@ import TagsForm from "../components/TagsForm";
 import { URL } from "../utils/commons";
 
 const TagsPage = ({
-  handleMobileMenuOpen,
-  handleMobileMenuClose,
+  onMobileMenuToggle,
   tagsListError,
   tagsListLoading,
   tagsList,
@@ -86,10 +85,9 @@ const TagsPage = ({
 
   return (
     <>
-      {tagsListLoading && <Loading onMobileMenuClose={handleMobileMenuClose} />}
+      {tagsListLoading && <Loading onMobileMenuToggle={onMobileMenuToggle} />}
       {tagsListError && <h2>{tagsListError.message}</h2>}
       <TagsMain
-        onMobileMenuOpen={handleMobileMenuOpen}
         tagsList={tagsList}
         onAddTagFormOpen={handleAddTagFormOpen}
         onEditTagFormOpen={handleEditTagFormOpen}

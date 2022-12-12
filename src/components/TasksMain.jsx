@@ -2,19 +2,9 @@ import React from "react";
 
 import ToDoColumn from "./ToDoColumn";
 
-const Main = ({
-  onAddFormOpen,
-  toDoList,
-  onMobileMenuOpen,
-  onEditFormOpen,
-  columnsListData,
-}) => {
+const Main = ({ onAddFormOpen, toDoList, onEditFormOpen, columnsListData }) => {
   return (
     <main className="to-do">
-      <button
-        onClick={onMobileMenuOpen}
-        className="main__mobile-menu-button hidden"
-      ></button>
       {columnsListData?.map((column) => (
         <ToDoColumn
           key={column._id}

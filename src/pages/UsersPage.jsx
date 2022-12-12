@@ -7,8 +7,7 @@ import UsersForm from "../components/UsersForm";
 import { URL } from "../utils/commons";
 
 const UsersPage = ({
-  handleMobileMenuOpen,
-  handleMobileMenuClose,
+  onMobileMenuToggle,
   usersListError,
   usersListLoading,
   usersList,
@@ -92,12 +91,9 @@ const UsersPage = ({
 
   return (
     <>
-      {usersListLoading && (
-        <Loading onMobileMenuClose={handleMobileMenuClose} />
-      )}
+      {usersListLoading && <Loading onMobileMenuToggle={onMobileMenuToggle} />}
       {usersListError && <h2>{usersListError}</h2>}
       <UsersMain
-        onMobileMenuOpen={handleMobileMenuOpen}
         usersList={usersList}
         onAddUserFormOpen={handleAddUserFormOpen}
         onEditUserFormOpen={handleEditUserFormOpen}

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import loadingPhrases from "../utils/loadingPhrases";
-const Loading = ({ onMobileMenuClose }) => {
+import { loadingPhrases } from "../utils/commons";
+const Loading = ({
+  // onMobileMenuClose
+  onMobileMenuToggle,
+}) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -16,7 +19,7 @@ const Loading = ({ onMobileMenuClose }) => {
   }, [index]);
 
   return (
-    <div className="loading__container" onClick={onMobileMenuClose}>
+    <div className="loading__container" onClick={onMobileMenuToggle}>
       <div className="loading__container-element1">
         <div className="loading__container-element2"></div>
       </div>

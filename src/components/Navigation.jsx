@@ -4,7 +4,7 @@ import NavigationItem from "./NavigationItem";
 
 const Navigation = ({
   isMobileMenuOpen,
-  onMobileMenuClose,
+  onMobileMenuToggle,
   tasksLength,
   usersLength,
   tagsLength,
@@ -17,7 +17,7 @@ const Navigation = ({
         style={{ left: isMobileMenuOpen ? "0" : "-75%" }}
       >
         <NavigationItem
-          handleMobileMenuClose={onMobileMenuClose}
+          onMobileMenuToggle={onMobileMenuToggle}
           tasksLength={tasksLength}
           usersLength={usersLength}
           columnsLength={columnsLength}
@@ -25,7 +25,7 @@ const Navigation = ({
         />
       </nav>
       <div
-        onClick={onMobileMenuClose}
+        onClick={onMobileMenuToggle}
         className={`navigation__overlay ${
           !isMobileMenuOpen && "navigation__overlay_closed"
         }`}
