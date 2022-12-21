@@ -1,4 +1,4 @@
-export const URL = "https://todo-api-mwy8.onrender.com";
+export const URL = "https://to-do-api.fly.dev";
 
 export const loadingPhrases = [
   "For the sake of this project, data is being fetched from an API that takes some time to run at the initial stage. Give it some time, please.",
