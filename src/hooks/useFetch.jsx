@@ -1,4 +1,3 @@
-import de from "date-fns/esm/locale/de/index.js";
 import { useState, useEffect } from "react";
 
 const useFetch = (url, options = { method: "GET" }) => {
