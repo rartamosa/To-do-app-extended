@@ -14,7 +14,10 @@ const TagInput = ({ tags, onTagAdd, tagsSuggestions, onTagRemove }) => {
   }, [tags]);
 
   useEffect(() => {
-    window.addEventListener("click", () => setIsSuggestionsOpen(false));
+    const clickHandler = () => setIsSuggestionsOpen(false);
+    window.addEventListener("click", clickHandler);
+
+    return () => window.removeEventListener("click", clickHandler);
   }, []);
 
   const inputFocus = () => {
